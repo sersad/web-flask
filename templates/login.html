@@ -9,7 +9,9 @@
             <h1 class="title">Авторизация</h1>
             <form class="form-horizontal" method="post" action="">
                 {{ form.hidden_tag() }}
-                <div class="alert alert-danger">{{ message }}</div>
+                {% if message %}
+                    <div class="alert alert-danger">{{ message }}</div>
+                {% endif %}
                 <div class="form-group">
                     <label for="username" class="cols-sm-2 control-label">{{ form.login.label }}</label>
                     <div class="cols-sm-10">
@@ -48,11 +50,6 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-plus fa" aria-hidden="true"></i></span>
                                &nbsp;&nbsp;&nbsp;&nbsp; {{ form.remember_me() }}<br>
-                            {% for error in form.password.errors %}
-                            <p class="alert alert-danger" role="alert">
-                                {{ error }}
-                            </p>
-                            {% endfor %}
                         </div>
                     </div>
                 </div>
