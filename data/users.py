@@ -24,7 +24,7 @@ class Users(SqlAlchemyBase, UserMixin, SerializerMixin):
                               index=True,
                               unique=True,
                               nullable=True)
-    users_type_id = sqlalchemy.Column(sqlalchemy.SMALLINT,
+    user_type_id = sqlalchemy.Column(sqlalchemy.SMALLINT,
                                       sqlalchemy.ForeignKey('users_types.id'),
                                       default=1,
                                       nullable=True)
@@ -35,7 +35,7 @@ class Users(SqlAlchemyBase, UserMixin, SerializerMixin):
 
     # back_populates должно указывать не на таблицу, а на атрибут класса orm.relation
     news = orm.relation("News", back_populates='users')
-    user_type = orm.relation("UsersTypes", back_populates='users')
+    users_type = orm.relation("UsersTypes", back_populates='users')
     comments = orm.relation("Comments", back_populates='users')
 
     # устанавливает значение хэша пароля для переданной строки.

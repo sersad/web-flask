@@ -5,7 +5,7 @@ from flask import Flask, render_template, redirect, make_response, request, sess
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 
 from data import db_session
-from data.users import User
+from data.users import Users
 from forms.user import RegisterForm, LoginForm
 
 from flask_restful import reqparse, abort, Api, Resource
@@ -32,30 +32,7 @@ def load_user(user_id):
     функция для получения пользователя, украшенная декоратором login_manager.user_loader
     """
     db_sess = db_session.create_session()
-    return db_sess.query(User).get(user_id)
-
-
-def add_user(db_sess):
-    user1 = User(name="Пользователь 1",
-                 about="биография пользователя 1",
-                 email="email1@email.ru")
-    db_sess.add(user1)
-    db_sess.commit()
-
-
-@app.route("/session_test")
-def session_test():
-    """
-    Сессии во Flask очень похожи на куки, но имеют большое преимущество:
-    гарантируется, что содержимое сессии не может быть изменено пользователем
-    (если у него нет нашего секретного ключа).
-    Для работы с сессиями есть специальный объект flask.session
-    :return:
-    """
-    visits_count = session.get('visits_count', 0)
-    session['visits_count'] = visits_count + 1
-    return make_response(
-        f"Вы пришли на эту страницу {visits_count + 1} раз")
+    return db_sess.query(Users).get(user_id)
 
 
 @app.route("/")
@@ -72,14 +49,19 @@ def reqister():
                                    form=form,
                                    message="Пароли не совпадают")
         db_sess = db_session.create_session()
-        if db_sess.query(User).filter(User.email == form.email.data).first():
+        if db_sess.query(Users).filter(Users.email == form.email.data).first():
             return render_template('register.html', title='Регистрация',
                                    form=form,
-                                   message="Такой пользователь уже есть")
-        user = User(
+                                   message="Пользователь с такой почтой уже есть")
+
+        if db_sess.query(Users).filter(Users.login == form.login.data).first():
+            return render_template('register.html', title='Регистрация',
+                                   form=form,
+                                   message="Пользователь с таким логином уже есть")
+        user = Users(
             name=form.name.data,
-            email=form.email.data,
-            about=form.about.data
+            login=form.login.data,
+            email=form.email.data
         )
         user.set_password(form.password.data)
         db_sess.add(user)
@@ -99,7 +81,7 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         db_sess = db_session.create_session()
-        user = db_sess.query(User).filter(User.email == form.email.data).first()
+        user = db_sess.query(Users).filter(Users.login == form.login.data).first()
         if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
             return redirect("/")
@@ -170,12 +152,12 @@ def edit_news(id_):
 
 
 def main():
-    db_session.global_init("db/blogs.db")
+    db_session.global_init("db/base.db")
     db_sess = db_session.create_session()
 
 
     port = int(os.environ.get('PORT', 5000))
-    # с дефаултными значениями будет не более 4 потов
+    # с дефаултными значениями будет не более 4 потоков
     serve(app, port=port, host="0.0.0.0")
 
 

@@ -31,7 +31,7 @@ class News(SqlAlchemyBase, SerializerMixin):
     created_date = sqlalchemy.Column(sqlalchemy.DateTime,
                                      default=datetime.datetime.now)
     is_private = sqlalchemy.Column(sqlalchemy.Boolean,
-                                   default=True)
+                                   default=False)
 
     is_published = sqlalchemy.Column(sqlalchemy.Boolean,
                                      default=True)
