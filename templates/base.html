@@ -1,25 +1,39 @@
 <!doctype html>
 <html lang="en">
+
+
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous">
+
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}"/>
+
 <!-- start register form-->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- Website Font style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+
 <!-- end register form-->
+
     <title>{{title}}</title>
 </head>
 
 <body>
     <header>
         <nav class="navbar navbar-light bg-light">
-            <h1>Наше приложение</h1>
+            <h1>НОВОСТИ</h1>
             {% if current_user.is_authenticated %}
                 <a class="navbar-brand" href="/logout">{{ current_user.name }}</a>
             {% else %}

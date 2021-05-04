@@ -3,95 +3,102 @@
 {% block content %}
 
 <div class="container">
-    <div class="main-login main-center">
-        <form class="form-horizontal" method="post" action="#">
-            {{ form.hidden_tag() }}
-            {{message}}
-            <div class="form-group">
-                <label for="name" class="cols-sm-2 control-label">{{ form.name.label }}</label>
-                <div class="cols-sm-10">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                        {{ form.name(class="form-control", type="form-control", id="name", placeholder="Enter your Name") }}
-                        {% for error in form.name.errors %}
-                        <p class="alert alert-danger" role="alert">
-                            {{ error }}
-                        </p>
-                        {% endfor %}
+    <div class="row main">
+        <div class="main-login main-center">
+            <h1 class="title">Регистрация</h1>
+            <form class="form-horizontal" method="post" action="">
+                {{ form.hidden_tag() }}
+                <div class="alert alert-danger">{{ message }}</div>
+                <div class="form-group">
+                    <label for="name" class="cols-sm-2 control-label">{{ form.name.label }}</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            {{ form.name(class="form-control", type="form-control", id="name",
+                            placeholder="Enter your Name") }}
+                            {% for error in form.name.errors %}
+                            <p class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </p>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label for="email" class="cols-sm-2 control-label">{{ form.email.label }}</label>
-                <div class="cols-sm-10">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                        {{ form.email(class="form-control", type="email", id="email", placeholder="Enter your Email") }}
-                        {% for error in form.email.errors %}
-                        <p class="alert alert-danger" role="alert">
-                            {{ error }}
-                        </p>
-                        {% endfor %}
+                <div class="form-group">
+                    <label for="email" class="cols-sm-2 control-label">{{ form.email.label }}</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                            {{ form.email(class="form-control", type="email", id="email",
+                            placeholder="Enter your Email") }}
+                            {% for error in form.email.errors %}
+                            <p class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </p>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label for="username" class="cols-sm-2 control-label">{{ form.login.label }}</label>
-                <div class="cols-sm-10">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                        {{ form.login(class="form-control", type="form-control", id="login", placeholder="Enter your Login") }}
-                        {% for error in form.login.errors %}
-                        <p class="alert alert-danger" role="alert">
-                            {{ error }}
-                        </p>
-                        {% endfor %}
+                <div class="form-group">
+                    <label for="username" class="cols-sm-2 control-label">{{ form.login.label }}</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                            {{ form.login(class="form-control", type="form-control", id="login",
+                            placeholder="Enter your Login") }}
+                            {% for error in form.login.errors %}
+                            <p class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </p>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label for="password" class="cols-sm-2 control-label">{{ form.password.label }}</label>
-                <div class="cols-sm-10">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                        {{ form.password(class="form-control", id="password", type="password", placeholder="Enter your Password") }}<br>
-                        {% for error in form.password.errors %}
-                        <p class="alert alert-danger" role="alert">
-                            {{ error }}
-                        </p>
-                        {% endfor %}
+                <div class="form-group">
+                    <label for="password" class="cols-sm-2 control-label">{{ form.password.label }}</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            {{ form.password(class="form-control", id="password", type="password",
+                            placeholder="Enter your Password") }}<br>
+                            {% for error in form.password.errors %}
+                            <p class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </p>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label for="confirm" class="cols-sm-2 control-label">{{ form.password_again.label }}</label>
-                <div class="cols-sm-10">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                        {{ form.password_again(class="form-control", id="confirm", type="password", placeholder="Confirm your Password") }}<br>
-                        {% for error in form.password_again.errors %}
-                        <p class="alert alert-danger" role="alert">
-                            {{ error }}
-                        </p>
-                        {% endfor %}
+                <div class="form-group">
+                    <label for="confirm" class="cols-sm-2 control-label">{{ form.password_again.label }}</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            {{ form.password_again(class="form-control", id="confirm", type="password",
+                            placeholder="Confirm your Password") }}<br>
+                            {% for error in form.password_again.errors %}
+                            <p class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </p>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-group ">
-                {{ form.submit(type="submit", class="btn btn-primary btn-lg btn-block login-button") }}
-                <!--                    <button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>-->
-            </div>
-            <div class="login-register">
-                <a href="login">
-                    <button href="login" type="button" class="btn btn-primary btn-lg btn-block login-button">Login</button>
-               </a>
-            </div>
-        </form>
+                <div class="form-group ">
+                    {{ form.submit(type="submit", class="btn btn-primary btn-block btn-lg login-button") }}
+                </div>
+                <div class="login-register">
+                    <a href="login">
+                        <button type="button" class="btn btn-success btn-lg btn-block login-button">Войти</button>
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
