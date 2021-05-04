@@ -1,0 +1,72 @@
+import datetime
+
+import sqlalchemy
+from flask_login import UserMixin
+from sqlalchemy import orm
+from sqlalchemy_serializer import SerializerMixin
+from werkzeug.security import check_password_hash, generate_password_hash
+
+from .db_session import SqlAlchemyBase
+
+
+class Users(SqlAlchemyBase, UserMixin, SerializerMixin):
+    __tablename__ = 'users'
+
+    id = sqlalchemy.Column(sqlalchemy.Integer,
+                           primary_key=True,
+                           autoincrement=True)
+    name = sqlalchemy.Column(sqlalchemy.String,
+                             nullable=True)
+    login = sqlalchemy.Column(sqlalchemy.String,
+                              unique=True,
+                              nullable=True)
+    email = sqlalchemy.Column(sqlalchemy.String,
+                              index=True,
+                              unique=True,
+                              nullable=True)
+    users_type_id = sqlalchemy.Column(sqlalchemy.SMALLINT,
+                                      sqlalchemy.ForeignKey('users_types.id'),
+                                      default=1,
+                                      nullable=True)
+    hashed_password = sqlalchemy.Column(sqlalchemy.String,
+                                        nullable=True)
+    created_date = sqlalchemy.Column(sqlalchemy.DateTime,
+                                     default=datetime.datetime.now)
+
+    # back_populates должно указывать не на таблицу, а на атрибут класса orm.relation
+    news = orm.relation("News", back_populates='users')
+    user_type = orm.relation("UsersTypes", back_populates='users')
+    comments = orm.relation("Comments", back_populates='users')
+
+    # устанавливает значение хэша пароля для переданной строки.
+    # для регистрации пользователя
+    def set_password(self, password):
+        self.hashed_password = generate_password_hash(password)
+
+    # правильный ли пароль ввел пользователь
+    # авторизация пользователей
+    def check_password(self, password):
+        return check_password_hash(self.hashed_password, password)
+
+    def __repr__(self):
+        return f"***\n<class={__class__.__name__}>\n" \
+               f"id={self.id}\tname={self.name}\tlogin={self.login}\temail={self.email}\t" \
+               f"user_type={self.user_type}\thashed_password={self.hashed_password}\tcreated_date={self.created_date}" \
+               f"\n***"
+
+
+class UsersTypes(SqlAlchemyBase, UserMixin, SerializerMixin):
+    __tablename__ = 'users_types'
+
+    id = sqlalchemy.Column(sqlalchemy.SMALLINT,
+                           primary_key=True,
+                           autoincrement=True)
+    users_type = sqlalchemy.Column(sqlalchemy.String,
+                                  nullable=True)
+
+    users = orm.relation("Users", back_populates='users_type')
+
+    def __repr__(self):
+        return f"***\n<class={__class__.__name__}>\n" \
+               f"id={self.id}\tusers_type={self.users_type}\tusers={self.users}" \
+               f"\n***"
