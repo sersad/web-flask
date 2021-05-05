@@ -3,9 +3,14 @@ from datetime import datetime
 
 from flask import Flask, render_template, redirect, make_response, request, session, abort, jsonify
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
+from flask_wtf import CsrfProtect
+from flask_wtf.csrf import CSRFError, CSRFProtect
 
 from data import db_session
+from data.news import News, Category
 from data.users import Users
+from forms.comment import CommentForm
+from forms.news import NewsForm
 from forms.user import RegisterForm, LoginForm
 
 from flask_restful import reqparse, abort, Api, Resource
@@ -13,9 +18,16 @@ from flask_restful import reqparse, abort, Api, Resource
 from waitress import serve
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'sajlkjJASIjsd:ALSKJd;ilj;lkl'
-
+csrf = CSRFProtect(app)
 api = Api(app)
+
+SECRET_KEY = os.urandom(32)
+
+app.config.update(
+    SECRET_KEY=SECRET_KEY,
+    DEBUG=True,
+    WTF_CSRF_ENABLED=True)
+
 
 
 # Затем сразу после создания приложения flask инициализируем LoginManager
@@ -37,7 +49,11 @@ def load_user(user_id):
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    form = CommentForm()
+    db_sess = db_session.create_session()
+    news = db_sess.query(News)
+    return render_template("index.html", news=news, form=form)
+
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -73,7 +89,7 @@ def reqister():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     """
-    Если форма логина прошла валидацию, мы находим пользователя с введенной почтой,
+    Если форма логина прошла валидацию, мы находим пользователя,
     проверяем, введен ли для него правильный пароль, если да,
     вызываем функцию login_user модуля flask-login и передаем туда объект
     нашего пользователя, а также значение галочки «Запомнить меня».
@@ -102,19 +118,26 @@ def logout():
 @login_required
 def add_news():
     form = NewsForm()
+    db_sess = db_session.create_session()
+    category = db_sess.query(Category).all()
     if form.validate_on_submit():
         db_sess = db_session.create_session()
         news = News()
         news.title = form.title.data
         news.content = form.content.data
         news.is_private = form.is_private.data
+        news.is_published = form.is_published.data
+        print(form.category.data)
+        news.category_id = form.category.data
         current_user.news.append(news)
         # мы изменили текущего пользователя с помощью метода merge
         db_sess.merge(current_user)
         db_sess.commit()
         return redirect('/')
-    return render_template('news.html', title='Добавление новости',
-                           form=form)
+    return render_template('news.html',
+                           title='Добавление новости',
+                           form=form,
+                           category=category)
 
 
 @app.route('/news/<id_>', methods=['GET', 'POST'])
@@ -151,14 +174,29 @@ def edit_news(id_):
                            )
 
 
+@app.errorhandler(CSRFError)
+def csrf_error(reason):
+    return render_template('error.html', reason=reason)
+
+
 def main():
     db_session.global_init("db/base.db")
     db_sess = db_session.create_session()
 
+    # # user = db_sess.query(Users).first()
+    # # print(user.news)
+    # news = db_sess.query(News).all()
+    # for item in news:
+    #     print(item.user)
+
+    # db_sess = db_session.create_session()
+    # category = [(i.id, i.name) for i in db_sess.query(Category).all()]
+    # print(category)
 
     port = int(os.environ.get('PORT', 5000))
     # с дефаултными значениями будет не более 4 потоков
-    serve(app, port=port, host="0.0.0.0")
+    app.run()
+    # serve(app, port=port, host="0.0.0.0")
 
 
 if __name__ == '__main__':

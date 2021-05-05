@@ -22,13 +22,13 @@ class Comments(SqlAlchemyBase, SerializerMixin):
     created_date = sqlalchemy.Column(sqlalchemy.DateTime,
                                      default=datetime.datetime.now)
 
-    users = orm.relation('Users',
+    user = orm.relation('Users',
                         back_populates='comments')
     news = orm.relation('News',
                         back_populates='comments')
 
     def __repr__(self):
         return f"***\n<class={__class__.__name__}>\n" \
-               f"id={self.id}\tuser_id={self.user_id}\tnews_id={self.news_id}" \
+               f"id={self.id}\tusers_id={self.users_id}\tnews_id={self.news_id}" \
                f"content={self.content}\tcreated_date={self.created_date}" \
                f"\n***"

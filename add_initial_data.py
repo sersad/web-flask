@@ -9,11 +9,11 @@ def add_users_types(db_sess):
     :param db_sess:
     :return:
     """
-    types1 = UsersTypes(id=0,
+    types1 = UsersTypes(id=1,
                         users_type="Администраторы")
-    types2 = UsersTypes(id=1,
+    types2 = UsersTypes(id=2,
                         users_type="Обычные пользователи")
-    types3 = UsersTypes(id=2,
+    types3 = UsersTypes(id=3,
                         users_type="Пользователи только для чтения")
     db_sess.add(types1)
     db_sess.add(types2)
@@ -30,13 +30,13 @@ def add_user(db_sess):
     user1 = Users(name="Администратор",
                   login="admin",
                   email="email@email.ru",
-                  user_type_id=0,
+                  user_type_id=1,
                   hashed_password='12345'
                   )
     user2 = Users(name="Пользователь",
                   login="user",
                   email="email1@email.ru",
-                  user_type_id=1,
+                  user_type_id=2,
                   hashed_password='123'
                   )
     user1.set_password(user1.hashed_password)
@@ -52,11 +52,11 @@ def add_category(db_sess):
     :param db_sess:
     :return:
     """
-    category1 = Category(id=0,
+    category1 = Category(id=1,
                          name="Regular")
-    category2 = Category(id=1,
+    category2 = Category(id=2,
                          name="Sport")
-    category3 = Category(id=2,
+    category3 = Category(id=3,
                          name="IT")
     db_sess.add(category1)
     db_sess.add(category2)
@@ -72,15 +72,20 @@ def add_news(db_sess):
     """
     news1 = News(title="Первая новость",
                  content="Текст первой новости",
-                 user_id=0,
+                 user_id=1,
                  )
     news2 = News(title="Вторая новость",
                  content="Текст второй новости",
-                 user_id=0,
+                 user_id=1,
+                 )
+    news3 = News(title="Третья новость",
+                 content="Текст 3 новости",
+                 user_id=2,
                  )
 
     db_sess.add(news1)
     db_sess.add(news2)
+    db_sess.add(news3)
     db_sess.commit()
 
 
