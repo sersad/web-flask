@@ -13,7 +13,8 @@ class Comments(SqlAlchemyBase, SerializerMixin):
                            primary_key=True,
                            autoincrement=True)
     users_id = sqlalchemy.Column(sqlalchemy.Integer,
-                                sqlalchemy.ForeignKey("users.id"))
+                                 sqlalchemy.ForeignKey("users.id"),
+                                 nullable=True)
     news_id = sqlalchemy.Column(sqlalchemy.Integer,
                                 sqlalchemy.ForeignKey("news.id"))
 

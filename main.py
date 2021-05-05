@@ -1,3 +1,4 @@
+import logging
 import os
 from datetime import datetime
 
@@ -7,6 +8,7 @@ from flask_wtf import CsrfProtect
 from flask_wtf.csrf import CSRFError, CSRFProtect
 
 from data import db_session
+from data.comments import Comments
 from data.news import News, Category
 from data.users import Users
 from forms.comment import CommentForm
@@ -37,6 +39,7 @@ login_manager.init_app(app)
 # Чтобы продлить жизнь сессии
 # app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(days=365)
 
+logging.basicConfig(level=logging.WARNING)
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -47,11 +50,19 @@ def load_user(user_id):
     return db_sess.query(Users).get(user_id)
 
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def index():
     form = CommentForm()
     db_sess = db_session.create_session()
     news = db_sess.query(News)
+    if form.validate_on_submit():
+        comment = Comments(content=form.content.data,
+                           users_id=current_user.id,
+                           news_id=int(form.news_id.data))
+        logging.warning(f"{current_user.id}")
+        db_sess.add(comment)
+        db_sess.commit()
+        return redirect('/')
     return render_template("index.html", news=news, form=form)
 
 
