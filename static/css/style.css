@@ -31,8 +31,10 @@ p {
 /*}*/
 
 div.main-login {
-    width: 300px;
+    width: 250px;
     alignment: center;
     margin-left: auto;
     margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
 }

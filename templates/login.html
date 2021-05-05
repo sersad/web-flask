@@ -3,59 +3,65 @@
 {% block content %}
 
 
-<div class="container">
-    <div class="row main">
-        <div class="main-login main-center">
-            <h1 class="title">Авторизация</h1>
+<div class="container align-text-bottom">
+    <div class="row main align-text-bottom">
+        <div class="main-login">
+            <br>
+            <div class="card-header align-text-bottom">
+                Авторизация
+            </div>
+            <br>
             <form class="form-horizontal" method="post" action="">
                 {{ form.hidden_tag() }}
-
                 {% if message %}
                     <div class="alert alert-danger">{{ message }}</div>
                 {% endif %}
-                <div class="form-group">
-                    <label for="username" class="cols-sm-2 control-label">{{ form.login.label }}</label>
-                    <div class="cols-sm-10">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-users" aria-hidden="true"></i></span>
-                            {{ form.login(class="form-control", type="form-control", id="login",
-                            placeholder="Enter your Login") }}
-                            {% for error in form.login.errors %}
-                            <p class="alert alert-danger" role="alert">
-                                {{ error }}
-                            </p>
-                            {% endfor %}
+
+                <label class="sr-only" for="inlineFormInputGroup">{{ form.login.label }}</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    {{ form.login(class="form-control", type="form-control", id="login",
+                    placeholder="Enter your Login") }}
+                    {% for error in form.login.errors %}
+                    <p class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </p>
+                    {% endfor %}
+                </div>
+
+                <label class="sr-only" for="inlineFormInputGroup">{{ form.password.label }}</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    {{ form.password(class="form-control", id="password", type="password",
+                    placeholder="Enter your Password") }}<br>
+                    {% for error in form.password.errors %}
+                    <p class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </p>
+                    {% endfor %}
+                </div>
+
+                <label class="sr-only" for="inlineFormInputGroup">{{ form.remember_me.label }}</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-user-plus fa-align-center" aria-hidden="true"></i>
+                        </div>
+                        <div class="input-group-text">
+                        &nbsp;&nbsp;&nbsp;&nbsp;{{ form.remember_me() }}
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="password" class="cols-sm-2 control-label">{{ form.password.label }}</label>
-                    <div class="cols-sm-10">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                            {{ form.password(class="form-control", id="password", type="password",
-                            placeholder="Enter your Password") }}<br>
-                            {% for error in form.password.errors %}
-                            <p class="alert alert-danger" role="alert">
-                                {{ error }}
-                            </p>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="remember_me" class="cols-sm-2 control-label">{{ form.remember_me.label }}</label>
-                    <div class="cols-sm-10">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user-plus fa" aria-hidden="true"></i></span>
-                               &nbsp;&nbsp;&nbsp;&nbsp; {{ form.remember_me() }}<br>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group ">
                     {{ form.submit(type="submit", class="btn btn-primary btn-block btn-sm login-button") }}
                 </div>
 
