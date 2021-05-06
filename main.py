@@ -137,8 +137,8 @@ def logout():
 def add_news():
     form = NewsForm()
     db_sess = db_session.create_session()
-    # category = db_sess.query(Category).all()
     category = [(i.id, i.name) for i in db_sess.query(Category).all()]
+    form.category.choices = category
     if form.validate_on_submit():
         db_sess = db_session.create_session()
         news = News()
