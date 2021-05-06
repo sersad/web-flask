@@ -47,7 +47,7 @@ def add_user(db_sess):
                   )
     user1.set_password(user1.hashed_password)
     user2.set_password(user2.hashed_password)
-    user3.set_password(user2.hashed_password)
+    user3.set_password(user3.hashed_password)
     db_sess.add(user1)
     db_sess.add(user2)
     db_sess.add(user3)
@@ -201,14 +201,14 @@ def add_news(db_sess):
 Ранее сообщалось, что бывший президент США обнародовал собственный сайт. Ресурс называется From the Desk of Donald J. Trump («С рабочего стола Дональда Трампа»). На нем Трамп собирается публиковать обращения к сторонникам.
          """,
          7),
-
     ]
 
     for line in raw:
         news = News(content=line[1],
                     category_id=line[2],
                     title=line[0],
-                    is_published=True)
+                    is_published=True,
+                    user_id=1)
         db_sess.add(news)
     db_sess.commit()
 

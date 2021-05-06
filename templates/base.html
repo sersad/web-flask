@@ -27,11 +27,19 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
         <nav class="navbar navbar-light bg-light">
-            <h1>НОВОСТНОЙ САЙТ НСКА</h1>
+            <h4 class=" margin-bottom">НОВОСТНОЙ САЙТ НСКА</h4>
             {% if current_user.is_authenticated %}
+                    {% if current_user.is_authenticated and current_user.user_type_id == 1 %}
+                        <a href="news" class="btn btn-outline-secondary btn-sm">Добавить новость</a>
+                        <a href="category" class="btn btn-outline-secondary btn-sm">Просмотр категорий</a>
+                        <a href="users" class="btn btn-outline-secondary btn-sm">Просмотр пользователей</a>
+                    {% endif %}
                 <a class="btn btn-outline-secondary btn-sm" href="/logout" title="Выйти">{{ current_user.name }}</a>
             {% else %}
                 <p>
+
+
+
                     <a class="btn btn-outline-primary btn-sm" href="/register">Зарегистрироваться</a>
                     <a class="btn btn-outline-success btn-sm" href="/login">Войти</a>
                 </p>

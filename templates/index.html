@@ -1,6 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+
+<div class="container">
+    <div class="row">
+
+<!-- 1 колонка -->
+<div class="col-sm-0">
+    <a href="/" class="btn btn-outline btn-sm"> Все </a>
+    <br>
+    {% for i in category %}
+        <a href="/{{ i.id }}" class="btn btn-outline btn-sm"> {{i.name}} </a>
+        <br>
+    {% endfor %}
+</div>
+<!-- end 1 колонка -->
+
+
+<!-- end 2 колонка -->
+<div class="col col-lg-8">
+
 <!-- перебор новостей -->
     {% for item in news%}
 
@@ -10,9 +30,9 @@
             <div class="col-md6 border rounded">
 
 <!-- контент новости -->
-                <h3 class="display-6">{{item.title}}</h3>
+                <h5 class="display-6">{{item.title}}</h5>
                 <div>
-                    <p>
+                    <p class="">
                         {% autoescape false %}
                             {{item.content}}
                         {% endautoescape %}
@@ -22,7 +42,8 @@
                     <figure  class="text-end">
                         <br>
                         <figcaption class="blockquote-footer text-end">
-                            Автор: {{item.user.name}}, Дата написания: {{item.created_date}}
+                            Автор: <span class="badge badge-pill badge-light">{{item.user.name}}</span>,
+                            Дата написания: <span class="badge badge-pill badge-light">{{item.created_date}}</span>
                         </figcaption>
                     </figure>
                 </div>
@@ -98,7 +119,8 @@
                             <div class="col-md6 border rounded">
                                 <div class="align-left">
                                     <p class="blockquote-footer text-end bd-highlight">
-                                        {{ x.created_date }} Автор: {{ x.user.name }}
+                                        <span class="badge badge-pill badge-light">{{ x.created_date }}</span>
+                                        Автор: <span class="badge badge-pill badge-light">{{x.user.name}}</span>
                                     </p>
                                 </div>
 
@@ -123,9 +145,10 @@
 
         <br>
 
-        {% if current_user.is_authenticated and current_user.user_type_id == 1 %}
-            <a href="news" class="btn btn-outline-secondary btn-sm">Добавить новость</a>
-        {% endif %}
+<!-- end 2 колонка -->
+        </div>
+    </div>
+</div>
 
 
 {% endblock %}

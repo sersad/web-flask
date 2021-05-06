@@ -59,6 +59,9 @@ def index(category_id: int = 0):
         news = db_sess.query(News).filter(News.category_id == category_id).all()
     else:
         news = db_sess.query(News).all()
+
+    category = db_sess.query(Category).all()
+
     if form.validate_on_submit():
         comment = Comments(content=form.content.data,
                            users_id=current_user.id,
@@ -66,8 +69,8 @@ def index(category_id: int = 0):
         logging.warning(f"{current_user.id}")
         db_sess.add(comment)
         db_sess.commit()
-        return redirect('/')
-    return render_template("index.html", news=news, form=form)
+        return redirect(f"/{category_id}")
+    return render_template("index.html", news=news, form=form, category=category)
 
 
 @app.route('/register', methods=['GET', 'POST'])
