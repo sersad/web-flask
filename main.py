@@ -66,7 +66,6 @@ def index():
     return render_template("index.html", news=news, form=form)
 
 
-
 @app.route('/register', methods=['GET', 'POST'])
 def reqister():
     form = RegisterForm()
@@ -136,9 +135,7 @@ def add_news():
         news = News()
         news.title = form.title.data
         news.content = form.content.data
-        news.is_private = form.is_private.data
         news.is_published = form.is_published.data
-        print(form.category.data)
         news.category_id = form.category.data
         current_user.news.append(news)
         # мы изменили текущего пользователя с помощью метода merge
@@ -163,7 +160,8 @@ def edit_news(id_):
         if news:
             form.title.data = news.title
             form.content.data = news.content
-            form.is_private.data = news.is_private
+            form.is_published.data = news.is_published
+            form.category.data = news.category_id
         else:
             abort(404)
     if form.validate_on_submit():
@@ -174,15 +172,28 @@ def edit_news(id_):
         if news:
             news.title = form.title.data
             news.content = form.content.data
-            news.is_private = form.is_private.data
+            news.is_published = form.is_published.data
+            news.category_id = form.category.data
             db_sess.commit()
             return redirect('/')
         else:
             abort(404)
     return render_template('news.html',
                            title='Редактирование новости',
-                           form=form
-                           )
+                           form=form)
+
+
+@app.route('/news_delete/<int:id_>', methods=['GET', 'POST'])
+@login_required
+def news_delete(id_):
+    db_sess = db_session.create_session()
+    news = db_sess.query(News).filter(News.id == id_).first()
+    if news and current_user.user_type_id == 1:
+        db_sess.delete(news)
+        db_sess.commit()
+    else:
+        abort(404)
+    return redirect('/')
 
 
 @app.errorhandler(CSRFError)

@@ -4,90 +4,83 @@
 
 
 <div class="container">
-    <h1 class="title">Добавление новости</h1>
+    <h1 class="title">{{title}}</h1>
     <form class="form-horizontal" method="post" action="">
         {{ form.hidden_tag() }}
         {% if message %}
             <div class="alert alert-danger">{{ message }}</div>
         {% endif %}
-        <div class="form-group">
-            <label for="title" class="cols-sm-2 control-label">{{ form.title.label }}</label>
-            <div class="cols-sm-10">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="fa-hashtag fa" aria-hidden="true"></i>
-                    </span>
-                    {{ form.title(class="form-control", type="form-title", id="title",
-                    placeholder="Enter News title") }}
-                    {% for error in form.title.errors %}
-                        <p class="alert alert-danger" role="alert">
-                            {{ error }}
-                        </p>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
+
 
         <div class="form-group">
-            <label for="content" class="cols-sm-2 control-label">{{ form.content.label }}</label>
-            <div class="cols-sm-10">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="fa-align-justify fa" aria-hidden="true"></i>
-                    </span>
-                    {{ form.content(class="form-control", type="form-content", id="content",
-                    placeholder="Enter your content") }}
-                    {% for error in form.content.errors %}
-                        <p class="alert alert-danger" role="alert">
-                            {{ error }}
-                        </p>
-                    {% endfor %}
+            <label class="sr-only">{{ form.title.label }}</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="fa fa-hashtag" aria-hidden="true"></i>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="category" class="cols-sm-2 control-label">{{ form.category.label }}</label>
-            <div class="cols-sm-10">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="fa-align-justify fa" aria-hidden="true"></i>
-                    </span>
-                    {{ form.category(class="form-control", choices=[(1, 'test'),('test2', 2)], type="form-category", id="category",
-                    placeholder="Choise category") }}
-                    {% for error in form.category.errors %}
-                        <p class="alert alert-danger" role="alert">
-                            {{ error }}
-                        </p>
-                    {% endfor %}
-                </div>
+                {{ form.title(class="form-control", type="form-title", id="title",
+                placeholder="Enter News title") }}
+                {% for error in form.title.errors %}
+                    <p class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </p>
+                {% endfor %}
             </div>
         </div>
 
 
         <div class="form-group">
-            <label for="is_private" class="cols-sm-2 control-label">{{ form.is_private.label }}</label>
-            <div class="cols-sm-10">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="fa-copyright fa" aria-hidden="true"></i>
-                    </span>
-                       &nbsp;&nbsp;&nbsp;&nbsp; {{ form.is_private() }}<br>
+            <label class="sr-only">{{ form.content.label }}</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="fa fa-align-justify" aria-hidden="true"></i>
+                    </div>
                 </div>
+                {{ form.content(class="form-control", type="form-content", id="content",
+                placeholder="Enter your content") }}
+                {% for error in form.content.errors %}
+                    <p class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </p>
+                {% endfor %}
             </div>
         </div>
 
         <div class="form-group">
-            <label for="is_published" class="cols-sm-2 control-label">{{ form.is_published.label }}</label>
-            <div class="cols-sm-10">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="fa-clipboard fa" aria-hidden="true"></i>
-                    </span>
+            <label class="sr-only">{{ form.category.label }}</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="fa fa-align-justify" aria-hidden="true"></i>
+                    </div>
+                </div>
+                {{ form.category(class="form-control", choices=[(1, 'test'),('test2', 2)], type="form-category", id="category",
+                placeholder="Choise category") }}
+                {% for error in form.category.errors %}
+                    <p class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="sr-only">{{ form.is_published.label }}</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="fa fa-clipboard" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="input-group-text">
                        &nbsp;&nbsp;&nbsp;&nbsp; {{ form.is_published() }}<br>
                 </div>
             </div>
         </div>
+
 
         <div class="form-group ">
             {{ form.submit(type="submit", class="btn btn-primary btn-block btn-lg login-button") }}

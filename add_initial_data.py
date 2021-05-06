@@ -80,7 +80,7 @@ def add_news(db_sess):
                  )
     news3 = News(title="Третья новость",
                  content="Текст 3 новости",
-                 user_id=2,
+                 user_id=1,
                  )
 
     db_sess.add(news1)

@@ -32,18 +32,17 @@ class News(SqlAlchemyBase, SerializerMixin):
                                 nullable=True)
     created_date = sqlalchemy.Column(sqlalchemy.DateTime,
                                      default=datetime.datetime.now)
-    is_private = sqlalchemy.Column(sqlalchemy.Boolean,
-                                   default=False)
     is_published = sqlalchemy.Column(sqlalchemy.Boolean,
                                      default=True)
 
     user = orm.relation('Users', back_populates='news')
-    comments = orm.relation('Comments', back_populates='news')
+    # если новость удалили то и каскадом комментарии
+    comments = orm.relation('Comments', cascade="all, delete")
     category = orm.relation("Category", back_populates='news')
 
     def __repr__(self):
         return f"***\n<class={__class__.__name__}>\n" \
                f"id={self.id}\ttitle={self.title}\tcontent={self.content}\tuser_id={self.user_id} " \
-               f"created_date={self.created_date}\tis_private={self.is_private}\tis_published={self.is_published} " \
-               f"user={self.user}\tcomments={self.comments}\tcategories={self.categories} " \
+               f"created_date={self.created_date}\tis_published={self.is_published} " \
+               f"user={self.user}\tcomments={self.comments}\tcategories={self.category} " \
                f"\n***"

@@ -1,11 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
+
     {% for item in news%}
+
+    {% if item.is_published or current_user.user_type_id == 1 %}
         <div class="col-md6 border rounded">
             <h3 class="display-6">{{item.title}}</h3>
             <div>
-                {{item.content}}
+                <p>
+                    {% autoescape false %}
+                        {{item.content}}
+                    {% endautoescape %}
+                </p>
             </div>
             <div class="align-left">
                 <figure  class="text-end">
@@ -67,10 +74,38 @@
                 </div>
             </div>
 
-                {% endif %}
+            {% endif %}
+
+            <p>
+              <button class="btn btn-outline-secondary btn-sm" type="button" data-toggle="collapse" data-target="#collapse{{item.id}}" aria-expanded="false" aria-controls="collapseExample">
+                Показать комментарии
+              </button>
+            </p>
+
+            <div class="collapse" id="collapse{{item.id}}">
+                <div class="card card-body font-italic">
+
+                    {% for x in item.comments %}
+                        <div class="col-md6 border rounded">
+                            <div class="align-left">
+                                <p class="blockquote-footer text-end bd-highlight">
+                                    {{ x.created_date }} Автор: {{ x.user.name }}
+                                </p>
+                            </div>
+
+
+                            <p class="text-muted">
+                                {{ x.content }}
+                            </p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
 
 
         </div>
+    {% endif %}
     {% endfor %}
 
     <br>
