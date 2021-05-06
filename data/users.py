@@ -26,7 +26,7 @@ class Users(SqlAlchemyBase, UserMixin, SerializerMixin):
                               nullable=True)
     user_type_id = sqlalchemy.Column(sqlalchemy.SMALLINT,
                                       sqlalchemy.ForeignKey('users_types.id'),
-                                      default=1,
+                                      default=2,
                                       nullable=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String,
                                         nullable=True)
