@@ -37,7 +37,7 @@
         {% if current_user.is_authenticated %}
             {% if current_user.is_authenticated and current_user.user_type_id == 1 %}
                 <a href="news" class="btn btn-outline-secondary btn-sm">Добавить новость</a>
-                <a href="category" class="btn btn-outline-secondary btn-sm">Просмотр категорий</a>
+                <a href="categories" class="btn btn-outline-secondary btn-sm">Просмотр категорий</a>
                 <a href="users" class="btn btn-outline-secondary btn-sm">Просмотр пользователей</a>
             {% endif %}
             <a class="btn btn-outline-secondary btn-sm" href="/logout" title="Выйти">{{ current_user.name }}</a>

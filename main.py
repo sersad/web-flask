@@ -11,6 +11,7 @@ from data import db_session
 from data.comments import Comments
 from data.news import News, Category
 from data.users import Users
+from forms.category import CategoryForm
 from forms.comment import CommentForm
 from forms.news import NewsForm
 from forms.user import RegisterForm, LoginForm
@@ -199,6 +200,44 @@ def news_delete(id_):
     else:
         abort(404)
     return redirect('/')
+
+
+@app.route('/category/<int:id_>', methods=['GET', 'POST'])
+@login_required
+def category(id_: int):
+    form = CategoryForm()
+
+    if request.method == "GET":
+        db_sess = db_session.create_session()
+        category = db_sess.query(Category).filter(Category.id == id_).first()
+        if category and current_user.user_type_id == 1:
+            form.category_id.data = category.id
+            form.name.data = category.name
+        else:
+            abort(404)
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        category = db_sess.query(Category).filter(Category.id == id_).first()
+        if category and current_user.user_type_id == 1:
+            category.id = form.category_id.data
+            category.name = form.name.data
+            db_sess.commit()
+            return redirect('/categories')
+        else:
+            abort(404)
+    return render_template('category.html',
+                           title='Редактирование категорий',
+                           form=form)
+
+
+@app.route('/categories', methods=['GET', 'POST'])
+@login_required
+def categories():
+    db_sess = db_session.create_session()
+    categories = db_sess.query(Category).all()
+    return render_template('categories.html',
+                           title='Просмотр категорий',
+                           categories=categories)
 
 
 @app.errorhandler(CSRFError)
