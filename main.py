@@ -51,11 +51,14 @@ def load_user(user_id):
 
 
 @app.route("/", methods=['GET', 'POST'])
-@app.route("/<int:category_id>", defaults={'category_id': 0}, methods=['GET', 'POST'])
-def index(category_id=0):
+@app.route("/<int:category_id>", methods=['GET', 'POST'])
+def index(category_id: int = 0):
     form = CommentForm()
     db_sess = db_session.create_session()
-    news = db_sess.query(News)
+    if category_id != 0:
+        news = db_sess.query(News).filter(News.category_id == category_id).all()
+    else:
+        news = db_sess.query(News).all()
     if form.validate_on_submit():
         comment = Comments(content=form.content.data,
                            users_id=current_user.id,
@@ -64,7 +67,7 @@ def index(category_id=0):
         db_sess.add(comment)
         db_sess.commit()
         return redirect('/')
-    return render_template("index.html", news=news, form=form, category_id=category_id)
+    return render_template("index.html", news=news, form=form)
 
 
 @app.route('/register', methods=['GET', 'POST'])
