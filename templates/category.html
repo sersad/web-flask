@@ -15,23 +15,9 @@
         {% endif %}
 
 
-        <div class="form-group">
-            <label class="sr-only">{{ form.category_id.label }}</label>
-            <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <i class="fa fa-hashtag" aria-hidden="true"></i>
-                    </div>
-                </div>
-                {{ form.category_id(class="form-control", type="form-id", id="id",
-                placeholder="Enter ID") }}
-                {% for error in form.category_id.errors %}
-                <p class="alert alert-danger" role="alert">
-                    {{ error }}
-                </p>
-                {% endfor %}
-            </div>
-        </div>
+       <div class="modal fade" aria-hidden="true">
+                {{ form.category_id(class="form-control", type="form-control", id="id") }}
+       </div>
 
 
         <div class="form-group">
@@ -55,7 +41,7 @@
 
 
         <div class="form-group ">
-            {{ form.submit(type="submit", class="btn btn-primary btn-block btn-lg login-button") }}
+            {{ form.submit(type="submit", class="btn btn-primary btn-block btn-sm login-button") }}
         </div>
     </form>
     {% endif %}

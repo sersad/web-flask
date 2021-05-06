@@ -60,7 +60,8 @@
                         <i class="fa fa-align-justify" aria-hidden="true"></i>
                     </div>
                 </div>
-                {{ form.category(class="form-control", type="form-category", id="category",
+<!--                https://stackoverflow.com/questions/46921823/dynamic-choices-wtforms-flask-selectfield-->
+                {{ form.category(class="form-control", choices=category, type="form-category", id="category",
                 placeholder="Choice category") }}
                 {% for error in form.category.errors %}
                 <p class="alert alert-danger" role="alert">

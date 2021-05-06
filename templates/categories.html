@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- перебор новостей -->
+{% for item in categories%}
+
+    <!-- админ видит все -->
+    {% if current_user.user_type_id == 1 %}
+    <div class="container">
+        <div class="row">
+            <div class="col col-lg-5">
+                <div class="col-md6 border rounded">
+                    <div>
+                        Категория: <span class="badge badge-secondary">
+                            {{item.name}}
+                        </span>
+                        <br>
+                        <a href="/category/{{ item.id }}" class="btn btn-outline-warning btn-sm">
+                            Изменить
+                        </a>
+                        <a href="/category_delete/{{ item.id }}" class="btn btn-outline-danger btn-sm"
+                           title="удаление категории удалит все новости этой категории">
+                            Удалить
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- end если опубликована, админ видит все -->
+{% endif %}
+
+<!-- end перебор новостей -->
+{% endfor %}
+
+<br>
+<a href="/category" class="btn btn-outline-secondary btn-sm">
+    Добавить категорию
+</a>
+<a href="/" class="btn btn-outline-secondary btn-sm">
+    Вернуться к новостям
+</a>
+
+{% endblock %}

@@ -15,5 +15,6 @@ class NewsForm(FlaskForm):
     title = StringField('Заголовок', validators=[DataRequired()])
     content = TextAreaField("Содержание", validators=[DataRequired()])
     is_published = BooleanField("Опубликованное")
-    category = SelectField("Категория", choices=category, validators=[DataRequired()])
+    # category = SelectField("Категория", choices=category, validators=[DataRequired()])
+    category = SelectField("Категория", validators=[DataRequired()])
     submit = SubmitField('Добавить')

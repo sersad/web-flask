@@ -1,6 +1,6 @@
 import logging
 import os
-from datetime import datetime
+import datetime
 
 from flask import Flask, render_template, redirect, make_response, request, session, abort, jsonify
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
@@ -38,7 +38,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 # Чтобы продлить жизнь сессии
-# app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(days=365)
+app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(days=1)
 
 logging.basicConfig(level=logging.WARNING)
 
@@ -137,7 +137,8 @@ def logout():
 def add_news():
     form = NewsForm()
     db_sess = db_session.create_session()
-    category = db_sess.query(Category).all()
+    # category = db_sess.query(Category).all()
+    category = [(i.id, i.name) for i in db_sess.query(Category).all()]
     if form.validate_on_submit():
         db_sess = db_session.create_session()
         news = News()
@@ -202,11 +203,26 @@ def news_delete(id_):
     return redirect('/')
 
 
+@app.route('/category',  methods=['GET', 'POST'])
+@login_required
+def add_category():
+    form = CategoryForm()
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        category = Category()
+        category.name = form.name.data
+        db_sess.add(category)
+        db_sess.commit()
+        return redirect('/')
+    return render_template('category.html',
+                           title='Добавление Категории',
+                           form=form)
+
+
 @app.route('/category/<int:id_>', methods=['GET', 'POST'])
 @login_required
-def category(id_: int):
+def category_all(id_: int):
     form = CategoryForm()
-
     if request.method == "GET":
         db_sess = db_session.create_session()
         category = db_sess.query(Category).filter(Category.id == id_).first()
@@ -219,7 +235,6 @@ def category(id_: int):
         db_sess = db_session.create_session()
         category = db_sess.query(Category).filter(Category.id == id_).first()
         if category and current_user.user_type_id == 1:
-            category.id = form.category_id.data
             category.name = form.name.data
             db_sess.commit()
             return redirect('/categories')
@@ -230,14 +245,27 @@ def category(id_: int):
                            form=form)
 
 
+@app.route('/category_delete/<int:id_>', methods=['GET', 'POST'])
+@login_required
+def category_delete(id_: int):
+    db_sess = db_session.create_session()
+    category = db_sess.query(Category).filter(Category.id == id_).first()
+    if category and current_user.user_type_id == 1:
+        db_sess.delete(category)
+        db_sess.commit()
+    else:
+        abort(404)
+    return redirect('/categories')
+
+
 @app.route('/categories', methods=['GET', 'POST'])
 @login_required
 def categories():
     db_sess = db_session.create_session()
-    categories = db_sess.query(Category).all()
+    category = db_sess.query(Category).all()
     return render_template('categories.html',
                            title='Просмотр категорий',
-                           categories=categories)
+                           categories=category)
 
 
 @app.errorhandler(CSRFError)
@@ -263,6 +291,11 @@ def main():
     # с дефаултными значениями будет не более 4 потоков
     app.run()
     # serve(app, port=port, host="127.0.0.1")
+
+    # category = Category()
+    # category.name = 'Test'
+    # db_sess.add(category)
+    # db_sess.commit()
 
 
 if __name__ == '__main__':

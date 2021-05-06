@@ -9,13 +9,12 @@ from .db_session import SqlAlchemyBase
 
 class Category(SqlAlchemyBase):
     __tablename__ = 'category'
-    id = sqlalchemy.Column(sqlalchemy.SMALLINT,
+    id = sqlalchemy.Column(sqlalchemy.Integer,
                            primary_key=True,
                            autoincrement=True)
     name = sqlalchemy.Column(sqlalchemy.String,
                              nullable=True)
-
-    news = orm.relation("News", back_populates='category')
+    news = orm.relation("News", cascade="all, delete")
 
 
 class News(SqlAlchemyBase, SerializerMixin):
@@ -25,7 +24,7 @@ class News(SqlAlchemyBase, SerializerMixin):
                            primary_key=True, autoincrement=True)
     user_id = sqlalchemy.Column(sqlalchemy.Integer,
                                 sqlalchemy.ForeignKey("users.id"))
-    category_id = sqlalchemy.Column(sqlalchemy.SMALLINT,
+    category_id = sqlalchemy.Column(sqlalchemy.Integer,
                                     sqlalchemy.ForeignKey("category.id"))
     title = sqlalchemy.Column(sqlalchemy.String,
                               nullable=True)
@@ -47,3 +46,5 @@ class News(SqlAlchemyBase, SerializerMixin):
                f"created_date={self.created_date}\tis_published={self.is_published} " \
                f"user={self.user}\tcomments={self.comments}\tcategories={self.category} " \
                f"\n***"
+
+

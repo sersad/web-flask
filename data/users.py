@@ -24,7 +24,7 @@ class Users(SqlAlchemyBase, UserMixin, SerializerMixin):
                               index=True,
                               unique=True,
                               nullable=True)
-    user_type_id = sqlalchemy.Column(sqlalchemy.SMALLINT,
+    user_type_id = sqlalchemy.Column(sqlalchemy.Integer,
                                      sqlalchemy.ForeignKey('users_types.id'),
                                      default=2,
                                      nullable=True)
@@ -58,7 +58,7 @@ class Users(SqlAlchemyBase, UserMixin, SerializerMixin):
 class UsersTypes(SqlAlchemyBase, UserMixin, SerializerMixin):
     __tablename__ = 'users_types'
 
-    id = sqlalchemy.Column(sqlalchemy.SMALLINT,
+    id = sqlalchemy.Column(sqlalchemy.Integer,
                            primary_key=True,
                            autoincrement=True)
     users_type = sqlalchemy.Column(sqlalchemy.String,
