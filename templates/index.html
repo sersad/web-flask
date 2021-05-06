@@ -113,13 +113,15 @@
                 <!-- end Большое модальное окно для добавления комментариев -->
 
                 <!-- показ комментариев -->
+                {% if item.comments|length > 0 %}
                 <p>
                     <button class="btn btn-outline-secondary btn-sm" type="button" data-toggle="collapse"
                             data-target="#collapse{{item.id}}" aria-expanded="false" aria-controls="collapseExample">
-                        Показать комментарии
+                        Комментарии <span class="badge badge-light">{{item.comments|length}}</span>
+                        <span class="sr-only">unread messages</span>
                     </button>
                 </p>
-
+                {% endif %}
                 <div class="collapse" id="collapse{{item.id}}">
                     <div class="card card-body font-italic">
 
