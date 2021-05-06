@@ -25,9 +25,9 @@ class Users(SqlAlchemyBase, UserMixin, SerializerMixin):
                               unique=True,
                               nullable=True)
     user_type_id = sqlalchemy.Column(sqlalchemy.SMALLINT,
-                                      sqlalchemy.ForeignKey('users_types.id'),
-                                      default=2,
-                                      nullable=True)
+                                     sqlalchemy.ForeignKey('users_types.id'),
+                                     default=2,
+                                     nullable=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String,
                                         nullable=True)
     created_date = sqlalchemy.Column(sqlalchemy.DateTime,
@@ -62,7 +62,7 @@ class UsersTypes(SqlAlchemyBase, UserMixin, SerializerMixin):
                            primary_key=True,
                            autoincrement=True)
     users_type = sqlalchemy.Column(sqlalchemy.String,
-                                  nullable=True)
+                                   nullable=True)
 
     user = orm.relation("Users", back_populates='users_type')
 

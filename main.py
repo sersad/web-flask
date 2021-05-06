@@ -56,9 +56,9 @@ def index(category_id: int = 0):
     form = CommentForm()
     db_sess = db_session.create_session()
     if category_id != 0:
-        news = db_sess.query(News).filter(News.category_id == category_id).all()
+        news = db_sess.query(News).filter(News.category_id == category_id).order_by(News.created_date.desc()).all()
     else:
-        news = db_sess.query(News).all()
+        news = db_sess.query(News).order_by(News.created_date.desc()).all()
 
     category = db_sess.query(Category).all()
 
@@ -74,7 +74,7 @@ def index(category_id: int = 0):
 
 
 @app.route('/register', methods=['GET', 'POST'])
-def reqister():
+def register():
     form = RegisterForm()
     if form.validate_on_submit():
         if form.password.data != form.password_again.data:
@@ -173,10 +173,8 @@ def edit_news(id_):
             abort(404)
     if form.validate_on_submit():
         db_sess = db_session.create_session()
-        news = db_sess.query(News).filter(News.id == id_,
-                                          News.user == current_user
-                                          ).first()
-        if news:
+        news = db_sess.query(News).filter(News.id == id_).first()
+        if news and current_user.user_type_id == 1:
             news.title = form.title.data
             news.content = form.content.data
             news.is_published = form.is_published.data
@@ -225,7 +223,7 @@ def main():
     port = int(os.environ.get('PORT', 5000))
     # с дефаултными значениями будет не более 4 потоков
     app.run()
-    # serve(app, port=port, host="0.0.0.0")
+    # serve(app, port=port, host="127.0.0.1")
 
 
 if __name__ == '__main__':

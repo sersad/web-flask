@@ -1,4 +1,5 @@
 import datetime
+
 import sqlalchemy
 from sqlalchemy import orm
 from sqlalchemy_serializer import SerializerMixin
@@ -25,7 +26,7 @@ class News(SqlAlchemyBase, SerializerMixin):
     user_id = sqlalchemy.Column(sqlalchemy.Integer,
                                 sqlalchemy.ForeignKey("users.id"))
     category_id = sqlalchemy.Column(sqlalchemy.SMALLINT,
-                                     sqlalchemy.ForeignKey("category.id"))
+                                    sqlalchemy.ForeignKey("category.id"))
     title = sqlalchemy.Column(sqlalchemy.String,
                               nullable=True)
     content = sqlalchemy.Column(sqlalchemy.TEXT,
