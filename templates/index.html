@@ -1,117 +1,135 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<!-- перебор новостей -->
     {% for item in news%}
 
-    {% if item.is_published or current_user.user_type_id == 1 %}
-        <div class="col-md6 border rounded">
-            <h3 class="display-6">{{item.title}}</h3>
-            <div>
-                <p>
-                    {% autoescape false %}
-                        {{item.content}}
-                    {% endautoescape %}
-                </p>
-            </div>
-            <div class="align-left">
-                <figure  class="text-end">
-                    <br>
-                    <figcaption class="blockquote-footer text-end">
-                        Автор: {{item.user.name}}, Дата написания: {{item.created_date}}
-                    </figcaption>
-                </figure>
-            </div>
-            {% if current_user.is_authenticated and current_user.user_type_id == 1 %}
-                <div>
-                    <a href="/news/{{ item.id }}" class="btn btn-outline-warning btn-sm">
-                        Изменить
-                    </a>
-                    <a href="/news_delete/{{ item.id }}" class="btn btn-outline-danger btn-sm">
-                        Удалить
-                    </a>
-                </div>
-            {% endif %}
+<!-- по категориям -->
+        {% if category_id == 0 %}
 
-            {% if current_user.is_authenticated %}
+<!-- контент новости если опубликована, админ видит все -->
+            {% if item.is_published or current_user.user_type_id == 1 %}
+                <div class="col-md6 border rounded">
+                    <h3 class="display-6">{{item.title}}</h3>
+                    <div>
+                        <p>
+                            {% autoescape false %}
+                                {{item.content}}
+                            {% endautoescape %}
+                        </p>
+                    </div>
+                    <div class="align-left">
+                        <figure  class="text-end">
+                            <br>
+                            <figcaption class="blockquote-footer text-end">
+                                Автор: {{item.user.name}}, Дата написания: {{item.created_date}}
+                            </figcaption>
+                        </figure>
+                    </div>
+<!-- end контент новости -->
 
-            <!-- Большое модальное окно для добавления комментариев -->
-            <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#exampleModal{{item.id}}">Добавить комментарий</button>
-
-            <div class="modal fade" id="exampleModal{{item.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Новый комментарий</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+<!-- конопочки только админам  -->
+                    {% if current_user.is_authenticated and current_user.user_type_id == 1 %}
+                        <div>
+                            <a href="/news/{{ item.id }}" class="btn btn-outline-warning btn-sm">
+                                Изменить
+                            </a>
+                            <a href="/news_delete/{{ item.id }}" class="btn btn-outline-danger btn-sm">
+                                Удалить
+                            </a>
                         </div>
-                        <form action="" method="post">
-                        <div class="modal-body">
+                    {% endif %}
+<!-- end конопочки только админам  -->
 
-                                {{ form.hidden_tag() }}
-                                <div class="form-group">
-                                    <label for="message-text" class="col-form-label">{{ form.content.label }}:</label>
-                                    {{ form.content(class="form-control", type="form-content", id="content",
-                                                        placeholder="Enter your comment") }}
+<!-- Большое модальное окно для добавления комментариев -->
+                    {% if current_user.is_authenticated %}
+                    <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#exampleModal{{item.id}}">Добавить комментарий</button>
+
+                    <div class="modal fade" id="exampleModal{{item.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Новый комментарий</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="" method="post">
+                                <div class="modal-body">
+
+                                        {{ form.hidden_tag() }}
+                                        <div class="form-group">
+                                            <label for="message-text" class="col-form-label">{{ form.content.label }}:</label>
+                                            {{ form.content(class="form-control", type="form-content", id="content",
+                                                                placeholder="Enter your comment") }}
+                                        </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Закрыть</button>
+                                  {{ form.submit(type="submit", class="btn btn-outline-primary btn-sm") }}
+
+                                </div>
+                                <!--это передается id новости -->
+                                <div class="modal fade" aria-hidden="true">
+                                {{ form.news_id(class="form-control", type="form-content", id="news_id", value=item.id) }}
+                                                        {{item.id}}
                                 </div>
 
+                                </form>
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Закрыть</button>
-                          {{ form.submit(type="submit", class="btn btn-outline-primary btn-sm") }}
-
-                        </div>
-                        <!--это передается id новости -->
-                        <div class="modal fade" aria-hidden="true">
-                        {{ form.news_id(class="form-control", type="form-content", id="news_id", value=item.id) }}
-                                                {{item.id}}
-                        </div>
-
-                        </form>
                     </div>
-                </div>
-            </div>
 
+                    {% endif %}
+<!-- end Большое модальное окно для добавления комментариев -->
+
+<!-- показ комментариев -->
+                    <p>
+                      <button class="btn btn-outline-secondary btn-sm" type="button" data-toggle="collapse" data-target="#collapse{{item.id}}" aria-expanded="false" aria-controls="collapseExample">
+                        Показать комментарии
+                      </button>
+                    </p>
+
+                    <div class="collapse" id="collapse{{item.id}}">
+                        <div class="card card-body font-italic">
+
+                            {% for x in item.comments %}
+                                <div class="col-md6 border rounded">
+                                    <div class="align-left">
+                                        <p class="blockquote-footer text-end bd-highlight">
+                                            {{ x.created_date }} Автор: {{ x.user.name }}
+                                        </p>
+                                    </div>
+
+
+                                    <p class="text-muted">
+                                        {{ x.content }}
+                                    </p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+<!-- end показ комментариев -->
+
+
+                </div>
+<!-- end только админам  -->
             {% endif %}
 
-            <p>
-              <button class="btn btn-outline-secondary btn-sm" type="button" data-toggle="collapse" data-target="#collapse{{item.id}}" aria-expanded="false" aria-controls="collapseExample">
-                Показать комментарии
-              </button>
-            </p>
+<!-- end по категориям-->
+        {% endif %}
 
-            <div class="collapse" id="collapse{{item.id}}">
-                <div class="card card-body font-italic">
-
-                    {% for x in item.comments %}
-                        <div class="col-md6 border rounded">
-                            <div class="align-left">
-                                <p class="blockquote-footer text-end bd-highlight">
-                                    {{ x.created_date }} Автор: {{ x.user.name }}
-                                </p>
-                            </div>
-
-
-                            <p class="text-muted">
-                                {{ x.content }}
-                            </p>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-
-
-
-        </div>
-    {% endif %}
+<!-- end перебор новостей -->
     {% endfor %}
 
-    <br>
 
-    {% if current_user.is_authenticated and current_user.user_type_id == 1 %}
-        <a href="news" class="btn btn-outline-secondary btn-sm">Добавить новость</a>
-    {% endif %}
+        <br>
+
+        {% if current_user.is_authenticated and current_user.user_type_id == 1 %}
+            <a href="news" class="btn btn-outline-secondary btn-sm">Добавить новость</a>
+        {% endif %}
+
+
 
 {% endblock %}

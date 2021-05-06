@@ -51,7 +51,8 @@ def load_user(user_id):
 
 
 @app.route("/", methods=['GET', 'POST'])
-def index():
+@app.route("/<int:category_id>", defaults={'category_id': 0}, methods=['GET', 'POST'])
+def index(category_id=0):
     form = CommentForm()
     db_sess = db_session.create_session()
     news = db_sess.query(News)
@@ -63,7 +64,7 @@ def index():
         db_sess.add(comment)
         db_sess.commit()
         return redirect('/')
-    return render_template("index.html", news=news, form=form)
+    return render_template("index.html", news=news, form=form, category_id=category_id)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -148,7 +149,7 @@ def add_news():
                            category=category)
 
 
-@app.route('/news/<id_>', methods=['GET', 'POST'])
+@app.route('/news/<int:id_>', methods=['GET', 'POST'])
 @login_required
 def edit_news(id_):
     form = NewsForm()
