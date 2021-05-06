@@ -1,122 +1,124 @@
-{% extends "base.html" %}
+{% extends "base_noheader.html" %}
+
+{% block body %}
+<body class="hold-transition login-page">
+{% endblock %}
 
 {% block content %}
 
-<div class="container align-text-bottom">
-    <div class="row main align-text-bottom">
-        <div class="main-login">
-            <br>
-            <div class="card-header align-text-bottom">
-                Регистрация
+
+<div class="login-box">
+  <div class="login-logo">
+    <a href="/"><b>{{ title }}</b></a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+
+      <p class="login-box-msg">Введите данные чтобы продолжить</p>
+
+      <form action="" method="post">
+        {{ form.hidden_tag() }}
+        {% if message %}
+          <div class="alert alert-danger">{{ message }}</div>
+        {% endif %}
+
+        <div class="input-group mb-3">
+          {{ form.name(class="form-control", type="form-control", id="name",
+            placeholder="Enter your Full Name") }}
+          {% for error in form.name.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+          {% endfor %}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
             </div>
-            <br>
-            <form class="form-horizontal" method="post" action="">
-                {{ form.hidden_tag() }}
-                {% if message %}
-                    <div class="alert alert-danger">{{ message }}</div>
-                {% endif %}
-
-                <label class="sr-only" for="inlineFormInputGroup">{{ form.name.label }}</label>
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                    {{ form.name(class="form-control", type="form-control", id="name",
-                    placeholder="Enter your Name") }}
-                    {% for error in form.name.errors %}
-                    <p class="alert alert-danger" role="alert">
-                        {{ error }}
-                    </p>
-                    {% endfor %}
-                </div>
-
-                <br>
-
-                <label class="sr-only" for="inlineFormInputGroup">{{ form.email.label }}</label>
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                    {{ form.email(class="form-control", type="email", id="email",
-                    placeholder="Enter your Email") }}
-                    {% for error in form.email.errors %}
-                    <p class="alert alert-danger" role="alert">
-                        {{ error }}
-                    </p>
-                    {% endfor %}
-                </div>
-
-                <br>
-
-                <label class="sr-only" for="inlineFormInputGroup">{{ form.login.label }}</label>
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="fa fa-users" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                    {{ form.login(class="form-control", type="form-control", id="login",
-                    placeholder="Enter your Login") }}
-                    {% for error in form.login.errors %}
-                    <p class="alert alert-danger" role="alert">
-                        {{ error }}
-                    </p>
-                    {% endfor %}
-                </div>
-
-                <br>
-
-                <label class="sr-only" for="inlineFormInputGroup">{{ form.password.label }}</label>
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="fa fa-lock fa-lg" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                    {{ form.password(class="form-control", id="password", type="password",
-                    placeholder="Enter your Password") }}<br>
-                    {% for error in form.password.errors %}
-                    <p class="alert alert-danger" role="alert">
-                        {{ error }}
-                    </p>
-                    {% endfor %}
-                </div>
-
-                <br>
-
-                <label class="sr-only" for="inlineFormInputGroup">{{ form.password_again.label }}</label>
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="fa fa-lock fa-lg" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                    {{ form.password_again(class="form-control", id="confirm", type="password",
-                    placeholder="Confirm your Password") }}<br>
-                    {% for error in form.password_again.errors %}
-                    <p class="alert alert-danger" role="alert">
-                        {{ error }}
-                    </p>
-                    {% endfor %}
-                </div>
-
-                <br>
-
-                <div class="form-group ">
-                    {{ form.submit(type="submit", class="btn btn-primary btn-block btn-sm login-button") }}
-                </div>
-                <div class="login-register">
-                    <a href="login" class="btn btn-success btn-sm btn-block login-button">Войти</a>
-                </div>
-
-
-            </form>
+          </div>
         </div>
+
+        <div class="input-group mb-3">
+          {{ form.email(class="form-control", type="email", id="email",
+          placeholder="Enter your Email") }}
+          {% for error in form.email.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+          {% endfor %}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          {{ form.login(class="form-control", type="form-control", id="login",
+              placeholder="Enter your Login") }}
+          {% for error in form.login.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+          {% endfor %}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          {{ form.password(class="form-control", id="password", type="password",
+            placeholder="Enter your Password") }}
+          {% for error in form.password.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+          {% endfor %}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          {{ form.password_again(class="form-control", id="confirm", type="password",
+                    placeholder="Confirm your Password") }}
+          {% for error in form.password_again.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+          {% endfor %}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-8">
+
+          </div>
+          <!-- /.col -->
+          <div class="col">
+            {{ form.submit(type="submit", class="btn btn-primary btn-block") }}
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+
+      <p class="mb-0">
+        <br>
+        <a href="login" class="text-center">Уже зарегистрированы?</a>
+      </p>
     </div>
+    <!-- /.login-card-body -->
+  </div>
 </div>
+<!-- /.login-box -->
 
 {% endblock %}

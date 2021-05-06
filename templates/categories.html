@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 
+{% block body %}
+<body class="hold-transition login-page">
+{% endblock %}
+
 {% block content %}
 
-<!-- перебор новостей -->
+<!-- перебор категорий -->
 {% for item in categories%}
 
     <!-- админ видит все -->
@@ -15,7 +19,6 @@
                         Категория: <span class="badge badge-secondary">
                             {{item.name}}
                         </span>
-                        <br>
                         <a href="/category/{{ item.id }}" class="btn btn-outline-warning btn-sm">
                             Изменить
                         </a>

@@ -24,7 +24,8 @@ app = Flask(__name__)
 csrf = CSRFProtect(app)
 api = Api(app)
 
-SECRET_KEY = os.urandom(32)
+# SECRET_KEY = os.urandom(32)
+SECRET_KEY = "asdaoisdiioaoisdjoiasjdiajsdoajoj"
 
 app.config.update(
     SECRET_KEY=SECRET_KEY,
