@@ -36,7 +36,7 @@ class Users(SqlAlchemyBase, UserMixin, SerializerMixin):
     # back_populates должно указывать не на таблицу, а на атрибут класса orm.relation
     news = orm.relation("News", back_populates='user')
     users_type = orm.relation("UsersTypes", back_populates='user')
-    comments = orm.relation("Comments", back_populates='user')
+    comments = orm.relation("Comments", cascade="all, delete")
 
     # устанавливает значение хэша пароля для переданной строки.
     # для регистрации пользователя

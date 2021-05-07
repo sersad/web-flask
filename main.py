@@ -7,7 +7,7 @@ from flask_login import LoginManager, login_user, login_required, logout_user, c
 from flask_wtf import CsrfProtect
 from flask_wtf.csrf import CSRFError, CSRFProtect
 
-from data import db_session
+from data import db_session, news_resources, users_resources
 from data.comments import Comments
 from data.news import News, Category
 from data.users import Users, UsersTypes
@@ -21,8 +21,21 @@ from flask_restful import reqparse, abort, Api, Resource
 from waitress import serve
 
 app = Flask(__name__)
+
+# защита форм
 csrf = CSRFProtect(app)
-api = Api(app)
+
+# csrf отключено для API
+api = Api(app, decorators=[csrf.exempt])
+
+# для списка объектов
+api.add_resource(news_resources.NewsListResource, '/api/v2/news')
+api.add_resource(users_resources.UsersListResource, '/api/v2/users')
+
+# для одного объекта
+api.add_resource(news_resources.NewsResource, '/api/v2/news/<int:news_id>')
+api.add_resource(users_resources.UsersResource, '/api/v2/users/<int:user_id>')
+
 
 # TODO: в проде сделать рандом
 # SECRET_KEY = os.urandom(32)
@@ -37,7 +50,7 @@ app.config.update(
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-# Чтобы продлить жизнь сессии
+# Чтобы продлить жизнь сессии до 1 дня
 app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(days=1)
 
 logging.basicConfig(level=logging.WARNING)
@@ -335,6 +348,14 @@ def csrf_error(reason):
     return render_template('error.html', reason=reason)
 
 
+@app.errorhandler(404)
+def not_found(error):
+    """при передаче неправильного параметра ответ от сервера будет приходить в формате JSON,
+    и клиентское приложение не будет падать
+    """
+    return make_response(jsonify({'error': 'Not found'}), 404)
+
+
 def main():
     db_session.global_init("db/base.db")
     db_sess = db_session.create_session()
@@ -354,11 +375,6 @@ def main():
     app.run()
     # TODO: в проде сделать waitres
     # serve(app, port=port, host="127.0.0.1")
-
-    # category = Category()
-    # category.name = 'Test'
-    # db_sess.add(category)
-    # db_sess.commit()
 
 
 if __name__ == '__main__':
