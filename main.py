@@ -420,23 +420,15 @@ def main():
     db_session.global_init("db/base.db")
     db_sess = db_session.create_session()
 
-    # # user = db_sess.query(Users).first()
-    # # print(user.news)
-    # news = db_sess.query(News).all()
-    # for item in news:
-    #     print(item.user)
-
     # db_sess = db_session.create_session()
     # category = [(i.id, i.name) for i in db_sess.query(Category).all()]
     # print(category)
 
-
-
     port = int(os.environ.get('PORT', 5000))
     # с дефаултными значениями будет не более 4 потоков
-    # app.run()
+    app.run()
     # TODO: в проде сделать waitres
-    serve(app, port=port, host="127.0.0.1")
+    # serve(app, port=port, host="127.0.0.1")
 
 
 if __name__ == '__main__':
