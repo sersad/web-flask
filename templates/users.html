@@ -1,21 +1,28 @@
 {% extends "base.html" %}
 
 {% block body %}
-<body class="hold-transition">
+<body class="hold-transition sidebar-mini">
 {% endblock %}
 
 {% block content %}
 
 {% if current_user.user_type_id == 1 %}
 
+<div class="card">
+  <div class="card-body">
+
+    <p>При удалении пользователя, все написанные им комментарии так же будут удалены.</p>
+    <p>Удалить самого себя невозможно.</p>
+    <p>Удалить всех админов невозможно.</p>
+
+  </div>
+</div>
+
+
 <div class="container-fluid">
   <div class="row">
     <div class="col">
       <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">{{ title }}</h3>
-        </div>
-
         <div class="card-body">
           <table class="table table-bordered">
             <thead>
@@ -58,10 +65,6 @@
         </div>
         <!-- end  админ видит все -->
         {% endif %}
-        <br>
-        <a href="/" class="btn btn-outline-secondary btn-sm">
-          Вернуться к новостям
-        </a>
       </div>
     </div>
   </div>

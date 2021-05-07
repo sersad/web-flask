@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
 {% block body %}
-<body class="hold-transition">
+<body class="hold-transition sidebar-mini">
 {% endblock %}
 
 {% block content %}
 
 <!-- перебор категорий -->
-{% for item in categories%}
+{% for item in category%}
 
     <!-- админ видит все -->
     {% if current_user.user_type_id == 1 %}

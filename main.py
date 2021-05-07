@@ -55,6 +55,7 @@ app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(days=1)
 
 logging.basicConfig(level=logging.WARNING)
 
+
 @login_manager.user_loader
 def load_user(user_id):
     """
@@ -74,11 +75,11 @@ def index(category_id: int = 0):
     else:
         news = db_sess.query(News).order_by(News.created_date.desc()).all()
 
-    category = db_sess.query(Category).all()
+    categories = db_sess.query(Category).all()
     if not category_id:
         title = "Последние новости"
     else:
-        title,  = [i.name for i in category if i.id == category_id]
+        title,  = [i.name for i in categories if i.id == category_id]
     if form.validate_on_submit():
         comment = Comments(content=form.content.data,
                            users_id=current_user.id,
@@ -90,7 +91,7 @@ def index(category_id: int = 0):
     return render_template("index.html",
                            news=news,
                            form=form,
-                           category=category,
+                           category=categories,
                            title=title)
 
 
@@ -157,6 +158,7 @@ def logout():
 def add_news():
     form = NewsForm()
     db_sess = db_session.create_session()
+    categories = db_sess.query(Category).all()
     category = [(i.id, i.name) for i in db_sess.query(Category).all()]
     form.category.choices = category
     if form.validate_on_submit():
@@ -173,15 +175,17 @@ def add_news():
     return render_template('news.html',
                            title='Добавление новости',
                            form=form,
-                           category=category)
+                           category=categories)
 
 
 @app.route('/news/<int:id_>', methods=['GET', 'POST'])
 @login_required
 def edit_news(id_):
     form = NewsForm()
+    db_sess = db_session.create_session()
+    categories = db_sess.query(Category).all()
     if request.method == "GET":
-        db_sess = db_session.create_session()
+
         news = db_sess.query(News).filter(News.id == id_,
                                           News.user == current_user
                                           ).first()
@@ -206,6 +210,7 @@ def edit_news(id_):
             abort(404)
     return render_template('news.html',
                            title='Редактирование новости',
+                           category=categories,
                            form=form)
 
 
@@ -226,8 +231,9 @@ def news_delete(id_):
 @login_required
 def add_category():
     form = CategoryForm()
+    db_sess = db_session.create_session()
+    categories = db_sess.query(Category).all()
     if form.validate_on_submit():
-        db_sess = db_session.create_session()
         category = Category()
         category.name = form.name.data
         db_sess.add(category)
@@ -235,6 +241,7 @@ def add_category():
         return redirect('/')
     return render_template('category.html',
                            title='Добавление Категории',
+                           category=categories,
                            form=form)
 
 
@@ -242,8 +249,9 @@ def add_category():
 @login_required
 def category_edit(id_: int):
     form = CategoryForm()
+    db_sess = db_session.create_session()
+    categories = db_sess.query(Category).all()
     if request.method == "GET":
-        db_sess = db_session.create_session()
         category = db_sess.query(Category).filter(Category.id == id_).first()
         if category and current_user.user_type_id == 1:
             form.category_id.data = category.id
@@ -251,7 +259,6 @@ def category_edit(id_: int):
         else:
             abort(404)
     if form.validate_on_submit():
-        db_sess = db_session.create_session()
         category = db_sess.query(Category).filter(Category.id == id_).first()
         if category and current_user.user_type_id == 1:
             category.name = form.name.data
@@ -261,6 +268,7 @@ def category_edit(id_: int):
             abort(404)
     return render_template('category.html',
                            title='Редактирование категорий',
+                           category=categories,
                            form=form)
 
 
@@ -279,20 +287,23 @@ def category_delete(id_: int):
 
 @app.route('/categories', methods=['GET', 'POST'])
 @login_required
-def categories():
+def categories_all():
     db_sess = db_session.create_session()
-    category = db_sess.query(Category).all()
+    categories = db_sess.query(Category).all()
     return render_template('categories.html',
                            title='Просмотр категорий',
-                           categories=category)
+                           category=categories)
+
 
 @app.route('/users', methods=['GET', 'POST'])
 @login_required
 def all_users():
     db_sess = db_session.create_session()
     users = db_sess.query(Users).all()
+    categories = db_sess.query(Category).all()
     return render_template('users.html',
                            title='Просмотр пользователей',
+                           category=categories,
                            users=users)
 
 
@@ -304,6 +315,8 @@ def user_delete(id_: int):
     if user == current_user:
         abort(403)
     elif user and current_user.user_type_id == 1:
+        if user.user_type_id == 1 and len(db_sess.query(Users).filter(Users.user_type_id == 1).all()) < 2:
+            abort(403)
         db_sess.delete(user)
         db_sess.commit()
     else:
@@ -350,17 +363,47 @@ def user_edit(id_: int):
                            form=form)
 
 
+@app.route('/contacts')
+def contacts():
+    db_sess = db_session.create_session()
+    category = db_sess.query(Category).all()
+    return render_template('contacts.html',
+                           title='Контактная информация',
+                           category=category)
+
+
+@app.route('/about')
+def about():
+    db_sess = db_session.create_session()
+    category = db_sess.query(Category).all()
+    return render_template('about.html',
+                           title='О проекте',
+                           category=category)
+
+
 @app.errorhandler(CSRFError)
 def csrf_error(reason):
     return render_template('error.html', reason=reason)
 
 
 @app.errorhandler(404)
-def not_found(error):
-    """при передаче неправильного параметра ответ от сервера будет приходить в формате JSON,
-    и клиентское приложение не будет падать
-    """
-    return make_response(jsonify({'error': 'Not found'}), 404)
+def error_404(error):
+    db_sess = db_session.create_session()
+    category = db_sess.query(Category).all()
+    return render_template('error.html',
+                           title='ОШИБКА 404',
+                           category=category,
+                           reason='НЕНАЙДЕНО')
+
+
+@app.errorhandler(403)
+def error_403(error):
+    db_sess = db_session.create_session()
+    category = db_sess.query(Category).all()
+    return render_template('error.html',
+                           title='ОШИБКА 403',
+                           category=category,
+                           reason='ЭТО НЕВОЗМОЖНО')
 
 
 def main():
@@ -376,6 +419,10 @@ def main():
     # db_sess = db_session.create_session()
     # category = [(i.id, i.name) for i in db_sess.query(Category).all()]
     # print(category)
+
+    users = db_sess.query(Users).filter(Users.user_type_id == 1).all()
+    print(len(users))
+
 
     port = int(os.environ.get('PORT', 5000))
     # с дефаултными значениями будет не более 4 потоков
