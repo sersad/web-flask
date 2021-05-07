@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block body %}
+<body class="hold-transition login-page">
+{% endblock %}
+
+{% block content %}
+
+<!-- перебор users -->
+{% for item in users%}
+
+    <!-- админ видит все -->
+    {% if current_user.user_type_id == 1 %}
+    <div class="container">
+        <div class="row">
+            <div class="col col-lg-5">
+                <div class="col-md6 border rounded">
+                    <div>
+                        <span class="badge badge-secondary">
+                            {{item.name}}
+                        </span>
+                        <span class="badge badge-secondary">
+                            {{item.login}}
+                        </span>
+                        <a href="/user/{{ item.id }}" class="btn btn-outline-warning btn-sm">
+                            Изменить
+                        </a>
+                        <a href="/user_delete/{{ item.id }}" class="btn btn-outline-danger btn-sm"
+                           title="удаление пользователя удалит его комментарии">
+                            Удалить
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- end если опубликована, админ видит все -->
+{% endif %}
+
+<!-- end перебор новостей -->
+{% endfor %}
+
+<br>
+
+<a href="/" class="btn btn-outline-secondary btn-sm">
+    Вернуться к новостям
+</a>
+
+{% endblock %}

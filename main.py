@@ -10,11 +10,11 @@ from flask_wtf.csrf import CSRFError, CSRFProtect
 from data import db_session
 from data.comments import Comments
 from data.news import News, Category
-from data.users import Users
+from data.users import Users, UsersTypes
 from forms.category import CategoryForm
 from forms.comment import CommentForm
 from forms.news import NewsForm
-from forms.user import RegisterForm, LoginForm
+from forms.user import RegisterForm, LoginForm, UserForm
 
 from flask_restful import reqparse, abort, Api, Resource
 
@@ -24,6 +24,7 @@ app = Flask(__name__)
 csrf = CSRFProtect(app)
 api = Api(app)
 
+# TODO: в проде сделать рандом
 # SECRET_KEY = os.urandom(32)
 SECRET_KEY = "asdaoisdiioaoisdjoiasjdiajsdoajoj"
 
@@ -141,7 +142,6 @@ def add_news():
     category = [(i.id, i.name) for i in db_sess.query(Category).all()]
     form.category.choices = category
     if form.validate_on_submit():
-        db_sess = db_session.create_session()
         news = News()
         news.title = form.title.data
         news.content = form.content.data
@@ -222,7 +222,7 @@ def add_category():
 
 @app.route('/category/<int:id_>', methods=['GET', 'POST'])
 @login_required
-def category_all(id_: int):
+def category_edit(id_: int):
     form = CategoryForm()
     if request.method == "GET":
         db_sess = db_session.create_session()
@@ -267,6 +267,69 @@ def categories():
     return render_template('categories.html',
                            title='Просмотр категорий',
                            categories=category)
+
+@app.route('/users', methods=['GET', 'POST'])
+@login_required
+def all_users():
+    db_sess = db_session.create_session()
+    users = db_sess.query(Users).all()
+    return render_template('users.html',
+                           title='Просмотр пользователей',
+                           users=users)
+
+
+@app.route('/user_delete/<int:id_>', methods=['GET', 'POST'])
+@login_required
+def user_delete(id_: int):
+    db_sess = db_session.create_session()
+    user = db_sess.query(Users).filter(Users.id == id_).first()
+    if user == current_user:
+        abort(403)
+    elif user and current_user.user_type_id == 1:
+        db_sess.delete(user)
+        db_sess.commit()
+    else:
+        abort(404)
+    return redirect('/users')
+
+
+@app.route('/user/<int:id_>', methods=['GET', 'POST'])
+@login_required
+def user_edit(id_: int):
+    form = UserForm()
+    db_sess = db_session.create_session()
+    users_type = [(i.id, i.users_type) for i in db_sess.query(UsersTypes).all()]
+    form.category.choices = users_type
+    if request.method == "GET":
+        user = db_sess.query(Users).filter(Users.id == id_).first()
+        if user and current_user.user_type_id == 1:
+            form.name.data = user.name
+            form.login.data = user.login
+            form.email.data = user.email
+            form.user_type_id.data = user.user_type_id
+        else:
+            abort(404)
+    if form.validate_on_submit():
+        user = db_sess.query(Users).filter(Users.id == id_).first()
+        if user and current_user.user_type_id == 1:
+            if form.password.data and form.password.data != form.password_again.data:
+                return render_template("user.html",
+                                       title="Редактирование пользователя",
+                                       form=form,
+                                       message="Пароли не совпадают")
+            elif form.password.data:
+                user.set_password(form.password.data)
+            user.name = form.name.data
+            user.login = form.login.data
+            user.email = form.email.data
+            user.user_type_id = form.user_type_id.data
+            db_sess.commit()
+            return redirect('/users')
+        else:
+            abort(404)
+    return render_template('user.html',
+                           title='Редактирование пользователя',
+                           form=form)
 
 
 @app.errorhandler(CSRFError)
