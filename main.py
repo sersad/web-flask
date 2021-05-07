@@ -75,7 +75,10 @@ def index(category_id: int = 0):
         news = db_sess.query(News).order_by(News.created_date.desc()).all()
 
     category = db_sess.query(Category).all()
-
+    if not category_id:
+        title = "Последние новости"
+    else:
+        title,  = [i.name for i in category if i.id == category_id]
     if form.validate_on_submit():
         comment = Comments(content=form.content.data,
                            users_id=current_user.id,
@@ -84,7 +87,11 @@ def index(category_id: int = 0):
         db_sess.add(comment)
         db_sess.commit()
         return redirect(f"/{category_id}")
-    return render_template("index.html", news=news, form=form, category=category)
+    return render_template("index.html",
+                           news=news,
+                           form=form,
+                           category=category,
+                           title=title)
 
 
 @app.route('/register', methods=['GET', 'POST'])

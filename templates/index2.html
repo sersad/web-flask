@@ -10,7 +10,22 @@
 
 
 
-<div class="col col-lg-8">
+<div class="row">
+
+    <!-- 1 колонка -->
+    <div class="col-sm-0">
+        <a href="/" class="btn btn-outline btn-sm"> Все </a>
+        <br>
+        {% for i in category %}
+        <a href="/{{ i.id }}" class="btn btn-outline btn-sm"> {{i.name}} </a>
+        <br>
+        {% endfor %}
+    </div>
+    <!-- end 1 колонка -->
+
+
+    <!-- end 2 колонка -->
+    <div class="col col-lg-8">
 
         <!-- перебор новостей -->
         {% for item in news%}
@@ -146,6 +161,10 @@
 
         <br>
 
+        <!-- end 2 колонка -->
+    </div>
 </div>
+
+
 
 {% endblock %}
