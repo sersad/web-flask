@@ -2,40 +2,41 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{{title}}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{{title}}</title>
 
-    <!-- Google Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+  <!-- Google Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/fontawesome-free/css/all.min.css') }}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/fontawesome-free/css/all.min.css') }}">
 
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/adminlte.min.css') }}">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/adminlte.min.css') }}">
 
 
-<!--    &lt;!&ndash; Website Font style &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">-->
+  <!--    &lt;!&ndash; Website Font style &ndash;&gt;-->
+  <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">-->
 
-<!--    <link rel="stylesheet"-->
-<!--          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"-->
-<!--          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"-->
-<!--          crossorigin="anonymous"-->
-<!--          id="bootstrap-css">-->
+  <!--    <link rel="stylesheet"-->
+  <!--          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"-->
+  <!--          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"-->
+  <!--          crossorigin="anonymous"-->
+  <!--          id="bootstrap-css">-->
 
-<!--    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}"/>-->
+  <!--    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}"/>-->
 
 </head>
 
-    {% block body %}
+{% block body %}
 
-    {% endblock %}
+{% endblock %}
 
 
 <div class="wrapper">
@@ -92,7 +93,8 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
-      <img src="{{ url_for('static', filename='img/Logo.png') }}" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="{{ url_for('static', filename='img/Logo.png') }}" alt="Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
       <span class="brand-text font-weight-light">НОВОСТИ</span>
     </a>
 
@@ -103,7 +105,8 @@
       {% if current_user.is_authenticated %}
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ url_for('static', filename='img/avatar5.png') }}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ url_for('static', filename='img/avatar5.png') }}" class="img-circle elevation-2"
+               alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ current_user.name }}</a>
@@ -116,45 +119,45 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-header">КАТЕГОРИИ НОВОСТЕЙ</li>
-            <li class="nav-item">
-              <a href="/" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-                <p>
-                  Все
-                </p>
-              </a>
-            </li>
+          <li class="nav-item">
+            <a href="/" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Все
+              </p>
+            </a>
+          </li>
           {% for i in category %}
-            <li class="nav-item">
-              <a href="/{{ i.id }}" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-                <p>
-                  {{i.name}}
-                </p>
-              </a>
-            </li>
+          <li class="nav-item">
+            <a href="/{{ i.id }}" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                {{i.name}}
+              </p>
+            </a>
+          </li>
           {% endfor %}
 
           {% if current_user.is_authenticated and current_user.user_type_id == 1 %}
           <li class="nav-header">РЕДАКТИРОВАНИЕ</li>
-            <li class="nav-item">
-                <a href="news" class="nav-link">
-                <i class="nav-icon fas fa-edit"></i>
-                <p>Добавить новость</p>
-              </a>
-            </li>
-            <li class="nav-item">
-                <a href="categories" class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
-                <p>Категории</p>
-              </a>
-            </li>
-            <li class="nav-item">
-                <a href="users" class="nav-link">
-                <i class="nav-icon fas fa-people-carry"></i>
-                <p>Пользователи</p>
-              </a>
-            </li>
+          <li class="nav-item">
+            <a href="news" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>Добавить новость</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="categories" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>Категории</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="users" class="nav-link">
+              <i class="nav-icon fas fa-people-carry"></i>
+              <p>Пользователи</p>
+            </a>
+          </li>
           {% endif %}
 
         </ul>
@@ -163,9 +166,6 @@
     </div>
     <!-- /.sidebar -->
   </aside>
-
-
-
 
 
   <!-- Content Wrapper. Contains page content -->
@@ -190,21 +190,27 @@
 
 
 
+
     <!-- Main content -->
     <section class="content">
 
-      <!-- Default box -->
-      <div class="card">
-        <div class="card-body">
+
 
           {% block content %}
 
+
+
+
+
+
+
           {% endblock %}
 
-        </div>
-      </div>
+
     </section>
     <!-- /.content -->
+
+
 
   </div>
   <!-- /.content-wrapper -->
