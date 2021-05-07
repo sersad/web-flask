@@ -33,8 +33,6 @@ app.config.update(
     DEBUG=True,
     WTF_CSRF_ENABLED=True)
 
-
-
 # Затем сразу после создания приложения flask инициализируем LoginManager
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -299,7 +297,7 @@ def user_edit(id_: int):
     form = UserForm()
     db_sess = db_session.create_session()
     users_type = [(i.id, i.users_type) for i in db_sess.query(UsersTypes).all()]
-    form.category.choices = users_type
+    form.user_type_id.choices = users_type
     if request.method == "GET":
         user = db_sess.query(Users).filter(Users.id == id_).first()
         if user and current_user.user_type_id == 1:
@@ -354,6 +352,7 @@ def main():
     port = int(os.environ.get('PORT', 5000))
     # с дефаултными значениями будет не более 4 потоков
     app.run()
+    # TODO: в проде сделать waitres
     # serve(app, port=port, host="127.0.0.1")
 
     # category = Category()
