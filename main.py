@@ -406,6 +406,16 @@ def error_403(error):
                            reason='ЭТО НЕВОЗМОЖНО')
 
 
+@app.login_manager.unauthorized_handler
+def unauth_handler():
+    db_sess = db_session.create_session()
+    category = db_sess.query(Category).all()
+    return render_template('error.html',
+                           title='Доступ запрещен',
+                           category=category,
+                           reason='Авторизуйтесь чтоб получить доступ.')
+
+
 def main():
     db_session.global_init("db/base.db")
     db_sess = db_session.create_session()

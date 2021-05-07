@@ -6,8 +6,6 @@
 
 {% block content %}
 
-{% if current_user.user_type_id == 1 %}
-
 <div class="card">
   <div class="card-body">
 
@@ -18,6 +16,8 @@
   </div>
 </div>
 
+<!-- админ видит все -->
+{% if current_user.user_type_id == 1 %}
 
 <div class="container-fluid">
   <div class="row">
@@ -49,10 +49,10 @@
               <td><span class="badge bg-success">{{ item.users_type.users_type }}</span></td>
               {% endif %}
               <td>
-                <a href="/user/{{ item.id }}" class="btn btn-outline-warning btn-sm">
+                <a href="../user/{{ item.id }}" class="btn btn-outline-warning btn-sm">
                   Изменить
                 </a>
-                <a href="/user_delete/{{ item.id }}" class="btn btn-outline-danger btn-sm"
+                <a href="../user_delete/{{ item.id }}" class="btn btn-outline-danger btn-sm"
                    title="удаление пользователя удалит его комментарии">
                   Удалить
                 </a>
@@ -63,11 +63,14 @@
             </tbody>
           </table>
         </div>
-        <!-- end  админ видит все -->
-        {% endif %}
+
       </div>
     </div>
   </div>
 </div>
+
+<!-- end  админ видит все -->
+{% endif %}
+
 
 {% endblock %}

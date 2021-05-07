@@ -6,44 +6,66 @@
 
 {% block content %}
 
-<!-- перебор категорий -->
-{% for item in category%}
+<div class="card">
+  <div class="card-body">
 
-    <!-- админ видит все -->
-    {% if current_user.user_type_id == 1 %}
-    <div class="container">
-        <div class="row">
-            <div class="col col-lg-5">
-                <div class="col-md6 border rounded">
-                    <div>
-                        Категория: <span class="badge badge-secondary">
-                            {{item.name}}
-                        </span>
-                        <a href="/category/{{ item.id }}" class="btn btn-outline-warning btn-sm">
+    <p>При удалении категории, все новости из этой категории так же будут удалены.</p>
+
+  </div>
+</div>
+
+<!-- админ видит все -->
+{% if current_user.user_type_id == 1 %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Имя</th>
+              <th scope="col">Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <!-- перебор категорий -->
+            {% for item in category%}
+
+            <tr>
+              <td>{{ item.id }}</td>
+              <td>{{ item.name }}</td>
+              <td>
+                        <a href="../category/{{ item.id }}" class="btn btn-outline-warning btn-sm">
                             Изменить
                         </a>
-                        <a href="/category_delete/{{ item.id }}" class="btn btn-outline-danger btn-sm"
+                        <a href="../category_delete/{{ item.id }}" class="btn btn-outline-danger btn-sm"
                            title="удаление категории удалит все новости этой категории">
                             Удалить
                         </a>
-                    </div>
-                </div>
-            </div>
+              </td>
+            </tr>
+            <!-- end перебор пользователей -->
+            {% endfor %}
+            </tbody>
+          </table>
         </div>
-    </div>
 
-<!-- end если опубликована, админ видит все -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- end админ видит все -->
 {% endif %}
 
-<!-- end перебор новостей -->
-{% endfor %}
-
-<br>
-<a href="/category" class="btn btn-outline-secondary btn-sm">
+<a href="category" class="btn btn-outline-secondary btn-sm">
     Добавить категорию
 </a>
-<a href="/" class="btn btn-outline-secondary btn-sm">
-    Вернуться к новостям
-</a>
+
 
 {% endblock %}
