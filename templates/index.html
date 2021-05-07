@@ -44,14 +44,24 @@
         Дата написания: <span class="badge badge-pill badge-light">{{item.created_date}}</span>
       </figcaption>
       <!-- конопочки только админам  -->
-      {% if current_user.is_authenticated and current_user.user_type_id == 1 %}
-      <div>
 
+      <div>
+        <!-- кнопка показа комментариев -->
+        {% if item.comments|length > 0 %}
+            <button class="btn btn-outline-secondary btn-sm" type="button" data-toggle="collapse" data-target="#collapse{{item.id}}" aria-expanded="false" aria-controls="collapseExample">
+              Комментарии <span class="badge badge-light">{{item.comments|length}}</span>
+            </button>
+        {% endif %}
+
+        <!-- кнопка добавления комментариев -->
         {% if current_user.is_authenticated %}
         <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal"
                 data-target="#exampleModal{{item.id}}">Добавить комментарий
         </button>
         {% endif %}
+
+       <!-- конопочки только админам  -->
+        {% if current_user.is_authenticated and current_user.user_type_id == 1 %}
         <a href="/news/{{ item.id }}" class="btn btn-outline-warning btn-sm">
           Изменить
         </a>
@@ -65,8 +75,8 @@
   </div>
   <!-- end контент новости -->
 
-  {% if current_user.is_authenticated %}
   <!-- Большое модальное окно для добавления комментариев -->
+  {% if current_user.is_authenticated %}
   <div class="modal fade" id="exampleModal{{item.id}}" tabindex="-1" role="dialog"
        aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -82,7 +92,7 @@
 
             {{ form.hidden_tag() }}
             <div class="form-group">
-              <label for="message-text" class="col-form-label">{{ form.content.label}}:</label>
+              <label class="col-form-label">{{ form.content.label}}:</label>
               {{ form.content(class="form-control", type="form-content", id="content",
                 placeholder="Enter your comment") }}
             </div>
@@ -109,15 +119,9 @@
   {% endif %}
   <!-- end Большое модальное окно для добавления комментариев -->
 
-  <!-- показ комментариев -->
-  {% if item.comments|length > 0 %}
-    <p>
-      <button class="btn btn-outline-secondary btn-sm" type="button" data-toggle="collapse" data-target="#collapse{{item.id}}" aria-expanded="false" aria-controls="collapseExample">
-        Комментарии <span class="badge badge-light">{{item.comments|length}}</span>
-      </button>
-    </p>
-  {% endif %}
 
+
+  <!-- показ комментариев -->
   <div class="collapse" id="collapse{{item.id}}">
     <div class="card-footer">
       <div class="card-body">
@@ -130,10 +134,11 @@
               </p>
             </div>
 
-
-            <p class="text-muted text-lg-left text-sm">
-              <small>{{ x.content }}</small>
-            </p>
+            <div class="card">
+              <p class="text-muted text-lg-left text-sm">
+                <small>{{ x.content }}</small>
+              </p>
+            </div>
           </div>
         {% endfor %}
       </div>

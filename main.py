@@ -420,8 +420,6 @@ def main():
     # category = [(i.id, i.name) for i in db_sess.query(Category).all()]
     # print(category)
 
-    users = db_sess.query(Users).filter(Users.user_type_id == 1).all()
-    print(len(users))
 
 
     port = int(os.environ.get('PORT', 5000))
