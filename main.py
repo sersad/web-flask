@@ -434,9 +434,9 @@ def main():
 
     port = int(os.environ.get('PORT', 5000))
     # с дефаултными значениями будет не более 4 потоков
-    app.run()
+    # app.run()
     # TODO: в проде сделать waitres
-    # serve(app, port=port, host="127.0.0.1")
+    serve(app, port=port, host="127.0.0.1")
 
 
 if __name__ == '__main__':
