@@ -354,7 +354,11 @@ def user_edit(id_: int):
             user.name = form.name.data
             user.login = form.login.data
             user.email = form.email.data
-            user.user_type_id = form.user_type_id.data
+            # Админ не может себя понизить
+            if current_user == user:
+                pass
+            else:
+                user.user_type_id = form.user_type_id.data
             db_sess.commit()
             return redirect('/users')
         else:
