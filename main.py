@@ -184,6 +184,7 @@ def edit_news(id_):
     form = NewsForm()
     db_sess = db_session.create_session()
     categories = db_sess.query(Category).all()
+    form.category.choices = [(i.id, i.name) for i in db_sess.query(Category).all()]
     if request.method == "GET":
 
         news = db_sess.query(News).filter(News.id == id_,
