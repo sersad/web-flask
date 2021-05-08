@@ -164,7 +164,10 @@ def add_news():
     if form.validate_on_submit():
         news = News()
         news.title = form.title.data
-        news.content = form.content.data
+        # news.content = form.content.data
+        logging.warning(form)
+        # news.content = form.content.data
+        news.content = request.form.get('content')
         news.is_published = form.is_published.data
         news.category_id = form.category.data
         current_user.news.append(news)

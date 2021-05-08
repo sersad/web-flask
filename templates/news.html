@@ -2,12 +2,22 @@
 
 {% block body %}
 <body class="hold-transition sidebar-mini">
+
+<!-- Summernote -->
+<script src="{{ url_for('static', filename='plugins/jquery/jquery.slim.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- Summernote -->
+<link rel="stylesheet" href="{{ url_for('static', filename='plugins/summernote/summernote-bs4.min.css') }}">
+<script src="{{ url_for('static', filename='plugins/summernote/summernote-bs4.min.js') }}"></script>
+
 {% endblock %}
 
 
 {% block content %}
 
+
 {% if current_user.is_authenticated and current_user.user_type_id == 1 %}
+
 
 <!-- general form elements -->
 <div class="card card-primary">
@@ -34,21 +44,24 @@
           </p>
           {% endfor %}
       </div>
-    </div>
 
-    <div class="card-body">
-      <div class="form-group">
-        <label for="content">
-          {{ form.content.label }}
+
+      <div class='form-group'>
+        <label for='summernote'>
+          {{form.content.label}}
         </label>
-        {{ form.content(class="form-control", type="form-content", id="content",
-        placeholder="Enter your content") }}
-        {% for error in form.content.errors %}
-        <p class="alert alert-danger" role="alert">
-          {{ error }}
-        </p>
-        {% endfor %}
+        <textarea id="summernote" name="content" class='form-control'>
+          {{form.content.data}}
+        </textarea>
+        <script>
+          $('#summernote').summernote({
+            placeholder: 'Enter some content here.',
+            tabsize: 2,
+            height: 100
+          });
+        </script>
       </div>
+
 
       <div class="form-group">
         <label for="category">
