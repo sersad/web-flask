@@ -37,9 +37,7 @@ api.add_resource(news_resources.NewsResource, '/api/v2/news/<int:news_id>')
 api.add_resource(users_resources.UsersResource, '/api/v2/users/<int:user_id>')
 
 
-# TODO: в проде сделать рандом
-# SECRET_KEY = os.urandom(32)
-SECRET_KEY = "asdaoisdiioaoisdjoiasjdiajsdoajoj"
+SECRET_KEY = os.urandom(32)
 
 app.config.update(
     SECRET_KEY=SECRET_KEY,
@@ -53,7 +51,9 @@ login_manager.init_app(app)
 # Чтобы продлить жизнь сессии до 1 дня
 app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(days=1)
 
-logging.basicConfig(level=logging.WARNING)
+logging.basicConfig(level=logging.WARNING,
+                    filename='logs/logfile.log',
+                    format='%(asctime)s %(levelname)s %(name)s %(message)s')
 
 
 @login_manager.user_loader
@@ -84,7 +84,6 @@ def index(category_id: int = 0):
         comment = Comments(content=form.content.data,
                            users_id=current_user.id,
                            news_id=int(form.news_id.data))
-        logging.warning(f"{current_user.id}")
         db_sess.add(comment)
         db_sess.commit()
         return redirect(f"/{category_id}")

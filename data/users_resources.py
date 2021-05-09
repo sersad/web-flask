@@ -1,5 +1,5 @@
 from flask import jsonify
-from flask_restful import reqparse, abort,  Resource
+from flask_restful import reqparse, abort, Resource
 
 from . import db_session
 from .users import Users
@@ -19,17 +19,19 @@ class UsersResource(Resource):
         users = db_sess.query(Users).get(user_id)
         return jsonify(
             {'users': users.to_dict(rules=('-news',
-                                         '-users_type',
-                                         '-comments',
-                                         ))})
+                                           '-users_type',
+                                           '-comments',
+                                           ))})
 
     def delete(self, user_id):
         abort_if_users_not_found(user_id)
         db_sess = db_session.create_session()
         users = db_sess.query(Users).get(user_id)
-        db_sess.delete(users)
-        db_sess.commit()
-        return jsonify({'success': 'OK'})
+        if users.user_type_id != 1:
+            db_sess.delete(users)
+            db_sess.commit()
+            return jsonify({'success': 'OK'})
+        abort(404, message=f"Can't delete admin")
 
 
 class UsersListResource(Resource):
@@ -50,7 +52,7 @@ class UsersListResource(Resource):
             login=args['login'],
             email=args['email'],
             user_type_id=args['user_type_id'],
-            )
+        )
         if args['id'] and not db_sess.query(Users).get(args['id']):
             user.id = args['id']
 
@@ -63,5 +65,4 @@ def abort_if_users_not_found(user_id):
     db_sess = db_session.create_session()
     user = db_sess.query(Users).get(user_id)
     if not user:
-        abort(404, message=f"User {user_id} not found")
-
+        abort(404, message=f'User {user_id} not found')

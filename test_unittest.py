@@ -4,14 +4,6 @@ import requests
 
 class TestFlaskApiNews(unittest.TestCase):
 
-    def test_news_not_int(self):
-        """
-        тест запроса не ID
-        :return:
-        """
-        response = requests.get('http://localhost:5000/api/v2/news/q')
-        self.assertEqual(response.json(), {'error': 'Not found'})
-
     def test_news_not(self):
         """
         тест запроса не существующего ID
@@ -91,14 +83,6 @@ class TestFlaskApiNews(unittest.TestCase):
 
 
 class TestFlaskApiUsers(unittest.TestCase):
-
-    def test_users_not_int(self):
-        """
-        тест запроса не ID пользователя
-        :return:
-        """
-        response = requests.get('http://localhost:5000/api/v2/users/q')
-        self.assertEqual(response.json(), {'error': 'Not found'})
 
     def test_users_not(self):
         """
