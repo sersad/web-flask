@@ -1,0 +1,180 @@
+2021-05-09 05:45:10,429 INFO werkzeug  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-05-09 05:45:10,429 INFO werkzeug  * Restarting with stat
+2021-05-09 05:45:10,684 WARNING werkzeug  * Debugger is active!
+2021-05-09 05:45:10,687 INFO werkzeug  * Debugger PIN: 128-437-443
+2021-05-09 05:45:12,963 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:45:12] "[37mGET /0 HTTP/1.1[0m" 200 -
+2021-05-09 05:45:13,037 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:45:13] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:45:13,046 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:45:13] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:45:13,049 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:45:13] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:45:13,167 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:45:13] "[37mGET /static/img/Logo.png HTTP/1.1[0m" 200 -
+2021-05-09 05:45:14,973 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:45:14] "[37mGET /static/img/Logo.png HTTP/1.1[0m" 200 -
+2021-05-09 05:45:45,127 INFO werkzeug  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-05-09 05:45:45,128 INFO werkzeug  * Restarting with stat
+2021-05-09 05:45:45,368 WARNING werkzeug  * Debugger is active!
+2021-05-09 05:45:45,371 INFO werkzeug  * Debugger PIN: 128-437-443
+2021-05-09 05:45:46,694 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:45:46] "[37mGET /0 HTTP/1.1[0m" 200 -
+2021-05-09 05:45:46,763 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:45:46] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:45:46,771 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:45:46] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:45:46,784 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:45:46] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:45:46,867 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:45:46] "[37mGET /static/img/Logo.png HTTP/1.1[0m" 200 -
+2021-05-09 05:45:47,606 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:45:47] "[37mGET /static/img/Logo.png HTTP/1.1[0m" 200 -
+2021-05-09 05:48:12,032 INFO werkzeug  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-05-09 05:48:12,033 INFO werkzeug  * Restarting with stat
+2021-05-09 05:48:12,270 WARNING werkzeug  * Debugger is active!
+2021-05-09 05:48:12,273 INFO werkzeug  * Debugger PIN: 128-437-443
+2021-05-09 05:48:13,373 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:13] "[37mGET /0 HTTP/1.1[0m" 200 -
+2021-05-09 05:48:13,473 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:13] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:48:13,473 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:13] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:48:13,475 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:13] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:48:13,588 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:13] "[37mGET /static/img/Logo.png HTTP/1.1[0m" 200 -
+2021-05-09 05:48:15,359 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:15] "[37mGET /static/img/Logo.png HTTP/1.1[0m" 200 -
+2021-05-09 05:48:26,736 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:26] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-05-09 05:48:26,810 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:26] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:48:26,810 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:26] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:48:26,813 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:26] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:48:26,913 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:26] "[37mGET /favicon.ico HTTP/1.1[0m" 200 -
+2021-05-09 05:48:34,059 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:34] "[32mPOST /login HTTP/1.1[0m" 302 -
+2021-05-09 05:48:34,121 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:34] "[37mGET / HTTP/1.1[0m" 200 -
+2021-05-09 05:48:34,176 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:34] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:48:34,179 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:34] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:48:34,183 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:34] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:48:35,334 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:35] "[37mGET /static/img/Logo.png HTTP/1.1[0m" 200 -
+2021-05-09 05:48:35,338 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:35] "[37mGET /static/img/avatar5.png HTTP/1.1[0m" 200 -
+2021-05-09 05:48:45,236 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:45] "[37mGET /news/20 HTTP/1.1[0m" 200 -
+2021-05-09 05:48:45,291 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:45] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:48:45,298 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:45] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:48:45,305 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:45] "[37mGET /static/plugins/summernote/summernote-bs4.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:48:45,307 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:45] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:48:45,320 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:45] "[37mGET /static/plugins/jquery/jquery.slim.min.js HTTP/1.1[0m" 200 -
+2021-05-09 05:48:45,326 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:45] "[37mGET /static/plugins/summernote/summernote-bs4.min.js HTTP/1.1[0m" 200 -
+2021-05-09 05:48:45,502 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:45] "[37mGET /static/plugins/summernote/font/summernote.woff2 HTTP/1.1[0m" 200 -
+2021-05-09 05:48:48,707 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:48] "[37mGET / HTTP/1.1[0m" 200 -
+2021-05-09 05:48:48,823 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:48] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:48:48,827 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:48] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:48:48,835 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:48:48] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:49:56,721 INFO werkzeug  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-05-09 05:49:56,722 INFO werkzeug  * Restarting with stat
+2021-05-09 05:49:56,958 WARNING werkzeug  * Debugger is active!
+2021-05-09 05:49:56,961 INFO werkzeug  * Debugger PIN: 128-437-443
+2021-05-09 05:49:58,339 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:49:58] "[37mGET / HTTP/1.1[0m" 200 -
+2021-05-09 05:49:58,425 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:49:58] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:49:58,425 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:49:58] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:49:58,431 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:49:58] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:50:00,398 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:00] "[37mGET /static/img/Logo.png HTTP/1.1[0m" 200 -
+2021-05-09 05:50:03,510 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:03] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-05-09 05:50:03,585 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:03] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:50:03,585 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:03] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:50:03,593 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:03] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:50:03,685 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:03] "[37mGET /favicon.ico HTTP/1.1[0m" 200 -
+2021-05-09 05:50:10,434 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:10] "[32mPOST /login HTTP/1.1[0m" 302 -
+2021-05-09 05:50:10,483 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:10] "[37mGET / HTTP/1.1[0m" 200 -
+2021-05-09 05:50:10,529 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:10] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:50:10,540 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:10] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:50:10,544 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:10] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:50:11,701 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:11] "[37mGET /static/img/Logo.png HTTP/1.1[0m" 200 -
+2021-05-09 05:50:11,704 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:11] "[37mGET /static/img/avatar5.png HTTP/1.1[0m" 200 -
+2021-05-09 05:50:21,988 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:21] "[37mGET /static/plugins/fontawesome-free/webfonts/fa-solid-900.woff2 HTTP/1.1[0m" 200 -
+2021-05-09 05:50:38,366 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:38] "[32mPOST / HTTP/1.1[0m" 302 -
+2021-05-09 05:50:38,414 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:38] "[37mGET /0 HTTP/1.1[0m" 200 -
+2021-05-09 05:50:38,480 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:38] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:50:38,481 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:38] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:50:38,486 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:38] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:50:50,275 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:50] "[32mPOST /0 HTTP/1.1[0m" 302 -
+2021-05-09 05:50:50,320 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:50] "[37mGET /0 HTTP/1.1[0m" 200 -
+2021-05-09 05:50:50,390 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:50] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:50:50,391 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:50] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:50:50,399 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:50:50] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:51:21,703 INFO werkzeug  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-05-09 05:51:21,703 INFO werkzeug  * Restarting with stat
+2021-05-09 05:51:21,943 WARNING werkzeug  * Debugger is active!
+2021-05-09 05:51:21,946 INFO werkzeug  * Debugger PIN: 128-437-443
+2021-05-09 05:51:23,096 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:51:23] "[37mGET /0 HTTP/1.1[0m" 200 -
+2021-05-09 05:51:23,184 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:51:23] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:51:23,186 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:51:23] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:51:23,187 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:51:23] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:51:24,908 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:51:24] "[37mGET /static/img/Logo.png HTTP/1.1[0m" 200 -
+2021-05-09 05:51:36,750 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:51:36] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-05-09 05:51:36,809 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:51:36] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:51:36,811 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:51:36] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:51:36,814 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:51:36] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:51:36,928 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:51:36] "[37mGET /favicon.ico HTTP/1.1[0m" 200 -
+2021-05-09 05:51:47,088 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:51:47] "[37mPOST /login HTTP/1.1[0m" 200 -
+2021-05-09 05:51:47,130 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:51:47] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:51:47,132 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:51:47] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:51:47,143 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:51:47] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:51:47,266 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:51:47] "[37mGET /favicon.ico HTTP/1.1[0m" 200 -
+2021-05-09 05:51:53,479 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:51:53] "[32mPOST /login HTTP/1.1[0m" 302 -
+2021-05-09 05:51:53,528 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:51:53] "[37mGET / HTTP/1.1[0m" 200 -
+2021-05-09 05:51:53,583 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:51:53] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:51:53,583 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:51:53] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:51:53,590 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:51:53] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:51:54,757 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:51:54] "[37mGET /static/img/Logo.png HTTP/1.1[0m" 200 -
+2021-05-09 05:51:54,761 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:51:54] "[37mGET /static/img/avatar5.png HTTP/1.1[0m" 200 -
+2021-05-09 05:52:06,437 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:06] "[32mPOST / HTTP/1.1[0m" 302 -
+2021-05-09 05:52:06,482 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:06] "[37mGET /0 HTTP/1.1[0m" 200 -
+2021-05-09 05:52:06,572 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:06] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:06,584 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:06] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:06,586 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:06] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:17,167 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:17] "[37mGET /about HTTP/1.1[0m" 200 -
+2021-05-09 05:52:17,239 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:17] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:17,244 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:17] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:17,246 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:17] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:18,782 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:18] "[37mGET /about HTTP/1.1[0m" 200 -
+2021-05-09 05:52:18,820 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:18] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:18,836 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:18] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:18,836 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:18] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:21,403 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:21] "[32mGET /logout HTTP/1.1[0m" 302 -
+2021-05-09 05:52:21,449 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:21] "[37mGET / HTTP/1.1[0m" 200 -
+2021-05-09 05:52:22,884 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:22] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-05-09 05:52:23,050 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:23] "[37mGET /favicon.ico HTTP/1.1[0m" 200 -
+2021-05-09 05:52:30,493 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:30] "[32mPOST /login HTTP/1.1[0m" 302 -
+2021-05-09 05:52:30,538 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:30] "[37mGET / HTTP/1.1[0m" 200 -
+2021-05-09 05:52:30,605 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:30] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:30,608 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:30] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:30,608 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:30] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:30,686 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:30] "[37mGET /static/img/Logo.png HTTP/1.1[0m" 200 -
+2021-05-09 05:52:30,693 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:30] "[37mGET /static/img/avatar5.png HTTP/1.1[0m" 200 -
+2021-05-09 05:52:33,153 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:33] "[37mGET /users HTTP/1.1[0m" 200 -
+2021-05-09 05:52:33,218 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:33] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:33,218 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:33] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:33,225 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:33] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:35,316 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:35] "[37mGET /user/2 HTTP/1.1[0m" 200 -
+2021-05-09 05:52:35,366 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:35] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:35,369 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:35] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:35,370 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:35] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:35,476 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:35] "[37mGET /favicon.ico HTTP/1.1[0m" 200 -
+2021-05-09 05:52:40,644 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:40] "[32mPOST /user/2 HTTP/1.1[0m" 302 -
+2021-05-09 05:52:40,659 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:40] "[37mGET /users HTTP/1.1[0m" 200 -
+2021-05-09 05:52:40,715 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:40] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:40,716 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:40] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:40,719 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:40] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:40,776 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:40] "[37mGET /static/img/Logo.png HTTP/1.1[0m" 200 -
+2021-05-09 05:52:40,781 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:40] "[37mGET /static/img/avatar5.png HTTP/1.1[0m" 200 -
+2021-05-09 05:52:42,765 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:42] "[32mGET /logout HTTP/1.1[0m" 302 -
+2021-05-09 05:52:42,817 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:42] "[37mGET / HTTP/1.1[0m" 200 -
+2021-05-09 05:52:42,871 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:42] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:42,875 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:42] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:42,878 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:42] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:44,650 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:44] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-05-09 05:52:44,714 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:44] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:44,727 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:44] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:44,730 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:44] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:44,825 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:44] "[37mGET /favicon.ico HTTP/1.1[0m" 200 -
+2021-05-09 05:52:51,324 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:51] "[32mPOST /login HTTP/1.1[0m" 302 -
+2021-05-09 05:52:51,373 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:51] "[37mGET / HTTP/1.1[0m" 200 -
+2021-05-09 05:52:51,428 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:51] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:51,441 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:51] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:51,442 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:51] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:52:51,490 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:51] "[37mGET /static/img/Logo.png HTTP/1.1[0m" 200 -
+2021-05-09 05:52:51,511 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:52:51] "[37mGET /static/img/avatar5.png HTTP/1.1[0m" 200 -
+2021-05-09 05:53:05,641 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:53:05] "[32mPOST / HTTP/1.1[0m" 302 -
+2021-05-09 05:53:05,690 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:53:05] "[37mGET /0 HTTP/1.1[0m" 200 -
+2021-05-09 05:53:05,765 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:53:05] "[37mGET /static/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:53:05,769 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:53:05] "[37mGET /static/plugins/icheck-bootstrap/icheck-bootstrap.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:53:05,773 INFO werkzeug 127.0.0.1 - - [09/May/2021 05:53:05] "[37mGET /static/css/adminlte.min.css HTTP/1.1[0m" 200 -
+2021-05-09 05:53:47,938 INFO werkzeug  * Detected change in '/home/ss/Yandex.Disk/web-flask/main.py', reloading
+2021-05-09 05:53:48,000 INFO werkzeug  * Restarting with stat
+2021-05-09 05:53:57,992 INFO werkzeug  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-05-09 05:53:57,993 INFO werkzeug  * Restarting with stat
+2021-05-09 05:53:58,223 WARNING werkzeug  * Debugger is active!
+2021-05-09 05:53:58,225 INFO werkzeug  * Debugger PIN: 128-437-443

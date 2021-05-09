@@ -16,15 +16,16 @@
 
 <!--Заголовок новости-->
 <div class="card">
+
   <div class="card-header">
     <h3 class="card-title">{{item.title}}</h3>
-
     <div class="card-tools">
       <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
         <i class="fas fa-minus"></i>
       </button>
     </div>
   </div>
+
 
   <!-- контент новости -->
 
@@ -45,10 +46,10 @@
       </figcaption>
       <!-- конопочки только админам  -->
 
-      <div>
         <!-- кнопка показа комментариев -->
         {% if item.comments|length > 0 %}
-            <button class="btn btn-outline-secondary btn-sm" type="button" data-toggle="collapse" data-target="#collapse{{item.id}}" aria-expanded="false" aria-controls="collapseExample">
+            <button class="btn btn-outline-secondary btn-sm" type="button" data-toggle="collapse"
+                    data-target="#collapse{{item.id}}" aria-expanded="false" aria-controls="collapse{{item.id}}">
               Комментарии <span class="badge badge-light">{{item.comments|length}}</span>
             </button>
         {% endif %}
@@ -68,9 +69,35 @@
         <a href="../news_delete/{{ item.id }}" class="btn btn-outline-danger btn-sm">
           Удалить
         </a>
-      </div>
       {% endif %}
       <!-- end конопочки только админам  -->
+
+
+      <!-- показ комментариев -->
+      <div class="collapse" id="collapse{{item.id}}">
+        <div class="card-footer">
+          <div class="card-body">
+            {% for x in item.comments %}
+              <div class="col-md4 border rounded">
+                <div class="align-left">
+                  <p class="blockquote-footer text-end bd-highlight">
+                    <span class="badge badge-pill badge-light">{{ x.created_date }}</span>
+                    Автор: <span class="badge badge-pill badge-light">{{x.user.name}}</span>
+                  </p>
+                </div>
+
+                <div class="card">
+                  <p class="text-muted text-lg-left text-sm">
+                    <small>{{ x.content }}</small>
+                  </p>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <!-- end показ комментариев -->
+
 
   </div>
   <!-- end контент новости -->
@@ -120,32 +147,6 @@
   <!-- end Большое модальное окно для добавления комментариев -->
 
 
-
-  <!-- показ комментариев -->
-  <div class="collapse" id="collapse{{item.id}}">
-    <div class="card-footer">
-      <div class="card-body">
-        {% for x in item.comments %}
-          <div class="col-md4 border rounded">
-            <div class="align-left">
-              <p class="blockquote-footer text-end bd-highlight">
-                <span class="badge badge-pill badge-light">{{ x.created_date }}</span>
-                Автор: <span class="badge badge-pill badge-light">{{x.user.name}}</span>
-              </p>
-            </div>
-
-            <div class="card">
-              <p class="text-muted text-lg-left text-sm">
-                <small>{{ x.content }}</small>
-              </p>
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-  <!-- end показ комментариев -->
-
 </div>
 
 <!-- end если опубликована, админ видит все -->
@@ -155,6 +156,5 @@
 {% endfor %}
 
 
-<br>
 
 {% endblock %}
