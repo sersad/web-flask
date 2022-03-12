@@ -3,7 +3,7 @@ Werkzeug~=1.0.1
 sqlalchemy
 SQLAlchemy-serializer
 requests
-flask-wtf
+flask-wtf==0.14
 flask-login
 flask-restful
 waitress
