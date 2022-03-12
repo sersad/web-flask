@@ -430,8 +430,8 @@ def main():
     port = int(os.environ.get('PORT', 5000))
     # с дефаултными значениями будет не более 4 потоков
     # app.run()
-
-    serve(app, port=port, host="127.0.0.1")
+    app.run(port=port, host="0.0.0.0")
+    # serve(app, port=port, host="127.0.0.1")
 
 
 if __name__ == '__main__':
