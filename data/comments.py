@@ -23,9 +23,9 @@ class Comments(SqlAlchemyBase, SerializerMixin):
     created_date = sqlalchemy.Column(sqlalchemy.DateTime,
                                      default=datetime.datetime.now)
 
-    user = orm.relation('Users',
+    user = orm.relationship('Users',
                         back_populates='comments')
-    news = orm.relation('News',
+    news = orm.relationship('News',
                         back_populates='comments')
 
     def __repr__(self):

@@ -4,7 +4,6 @@ import datetime
 
 from flask import Flask, render_template, redirect, make_response, request, session, abort, jsonify
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
-from flask_wtf import CsrfProtect
 from flask_wtf.csrf import CSRFError, CSRFProtect
 
 from data import db_session, news_resources, users_resources
@@ -429,9 +428,9 @@ def main():
 
     port = int(os.environ.get('PORT', 5000))
     # с дефаултными значениями будет не более 4 потоков
-    # app.run()
+    app.run()
 
-    serve(app, port=port, host="127.0.0.1")
+    # serve(app, port=port, host="127.0.0.1")
 
 
 if __name__ == '__main__':

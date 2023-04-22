@@ -33,10 +33,10 @@ class Users(SqlAlchemyBase, UserMixin, SerializerMixin):
     created_date = sqlalchemy.Column(sqlalchemy.DateTime,
                                      default=datetime.datetime.now)
 
-    # back_populates должно указывать не на таблицу, а на атрибут класса orm.relation
-    news = orm.relation("News", back_populates='user')
-    users_type = orm.relation("UsersTypes", back_populates='user')
-    comments = orm.relation("Comments", cascade="all, delete")
+    # back_populates должно указывать не на таблицу, а на атрибут класса orm.relationship
+    news = orm.relationship("News", back_populates='user')
+    users_type = orm.relationship("UsersTypes", back_populates='user')
+    comments = orm.relationship("Comments", cascade="all, delete")
 
     # устанавливает значение хэша пароля для переданной строки.
     # для регистрации пользователя
@@ -64,7 +64,7 @@ class UsersTypes(SqlAlchemyBase, UserMixin, SerializerMixin):
     users_type = sqlalchemy.Column(sqlalchemy.String,
                                    nullable=True)
 
-    user = orm.relation("Users", back_populates='users_type')
+    user = orm.relationship("Users", back_populates='users_type')
 
     def __repr__(self):
         return f"***\n<class={__class__.__name__}>\n" \

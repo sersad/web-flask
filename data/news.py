@@ -14,7 +14,7 @@ class Category(SqlAlchemyBase, SerializerMixin):
                            autoincrement=True)
     name = sqlalchemy.Column(sqlalchemy.String,
                              nullable=True)
-    news = orm.relation("News", cascade="all, delete")
+    news = orm.relationship("News", cascade="all, delete")
 
 
 class News(SqlAlchemyBase, SerializerMixin):
@@ -35,10 +35,10 @@ class News(SqlAlchemyBase, SerializerMixin):
     is_published = sqlalchemy.Column(sqlalchemy.Boolean,
                                      default=True)
 
-    user = orm.relation('Users', back_populates='news')
+    user = orm.relationship('Users', back_populates='news')
     # если новость удалили то и каскадом комментарии
-    comments = orm.relation('Comments', cascade="all, delete")
-    category = orm.relation("Category", back_populates='news')
+    comments = orm.relationship('Comments', cascade="all, delete")
+    category = orm.relationship("Category", back_populates='news')
 
     def __repr__(self):
         return f"***\n<class={__class__.__name__}>\n" \
